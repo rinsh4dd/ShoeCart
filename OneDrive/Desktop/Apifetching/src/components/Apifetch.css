@@ -1,0 +1,42 @@
+/* *{
+    background: #02ff70;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+.fetch {
+  background: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.head {
+  color: rgb(4, 4, 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: azure;
+  border-radius: 10px;
+  width: 250px;
+  height: 40px;
+}
+.ul-1 {
+  list-style: none;
+}
+.ul-1 li {
+  margin-top: 10px;
+
+  padding-top: 30px;
+  background-color: azure;
+  outline: solid 1px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-weight: 710;
+  font-size: 17px;
+}
