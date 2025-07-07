@@ -1,1 +1,1 @@
-export const URL  = "https://shoecart-4ug1.onrender.com/products"
+export const URL  = "https://shoecart-4ug1.onrender.com"
