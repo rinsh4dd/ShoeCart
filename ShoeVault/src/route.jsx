@@ -52,7 +52,7 @@ function AppRoutesWrapper() {
 
 function UserRouter() {
   return (
-    <Router basename="/shoeCart-Proj">
+    <Router>
       <AuthProvider>
         <AppRoutesWrapper />
       </AuthProvider>
