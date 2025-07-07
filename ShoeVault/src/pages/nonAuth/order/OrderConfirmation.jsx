@@ -18,7 +18,7 @@ function OrderConfirmation() {
 
     const fetchOrder = async () => {
       try {
-        const { data: userData } = await axios.get(`http://localhost:3000/users/${user.id}`);
+        const { data: userData } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
         const foundOrder = userData.orders?.find(o => o.id === state.orderId);
         
         if (foundOrder) {

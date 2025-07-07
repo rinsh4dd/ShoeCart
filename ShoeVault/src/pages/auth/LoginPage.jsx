@@ -34,7 +34,7 @@ function LoginPage() {
     localStorage.setItem("isLoggedIn", true);
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/users?email=${form.email}&password=${form.password}`
+        `https://shoecart-4ug1.onrender.com/users?email=${form.email}&password=${form.password}`
       );
 
       if (data.length > 0) {

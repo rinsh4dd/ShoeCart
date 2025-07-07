@@ -10,7 +10,7 @@ function Cart() {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:3000/users/${user.id}`)
+      fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`)
         .then(res => res.json())
         .then(data => {
           setCart(data.cart || []);

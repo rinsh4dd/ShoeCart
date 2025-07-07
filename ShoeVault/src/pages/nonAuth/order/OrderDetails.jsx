@@ -19,7 +19,7 @@ function OrderDetails() {
 
     const fetchOrder = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3000/users/${user.id}`);
+        const { data } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
         const foundOrder = data.orders?.find(o => o.id.toString() === orderId);
         
         if (foundOrder) {

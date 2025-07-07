@@ -28,7 +28,7 @@ function PaymentPage() {
       return;
     }
 
-    axios.get(`http://localhost:3000/users/${user.id}`)
+    axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`)
       .then(({ data }) => {
         setCart(data.cart || []);
         // Pre-fill address if available

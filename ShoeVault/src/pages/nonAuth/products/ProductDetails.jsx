@@ -15,7 +15,7 @@ function ProductDetails() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await fetch(`http://localhost:3000/products/${id}`);
+        const response = await fetch(`https://shoecart-4ug1.onrender.com/products/${id}`);
         if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         setProduct(data);
@@ -36,7 +36,7 @@ function ProductDetails() {
     if (!user) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/users/${user.id}`);
+      const response = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
       const userData = await response.json();
       const inWishlist = userData.wishlist?.some(item => item.id === productId);
       setIsInWishlist(inWishlist);
@@ -67,7 +67,7 @@ function ProductDetails() {
     };
 
     try {
-      const userRes = await fetch(`http://localhost:3000/users/${user.id}`);
+      const userRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
 
@@ -85,7 +85,7 @@ function ProductDetails() {
         toast.success("Item added to cart!");
       }
 
-      const patchRes = await fetch(`http://localhost:3000/users/${user.id}`, {
+      const patchRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart: updatedCart }),
@@ -106,7 +106,7 @@ function ProductDetails() {
     }
 
     try {
-      const userRes = await fetch(`http://localhost:3000/users/${user.id}`);
+      const userRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
 
@@ -131,7 +131,7 @@ function ProductDetails() {
         toast.success("Added to wishlist!");
       }
 
-      const patchRes = await fetch(`http://localhost:3000/users/${user.id}`, {
+      const patchRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ wishlist: updatedWishlist }),

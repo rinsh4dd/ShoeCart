@@ -19,7 +19,7 @@ function Wishlist() {
 
     const fetchWishlist = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3000/users/${user.id}`);
+        const { data } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
         setWishlist(data.wishlist || []);
       } catch (err) {
         console.error("Error fetching wishlist:", err);
@@ -33,10 +33,10 @@ function Wishlist() {
 
   const removeFromWishlist = async (productId) => {
     try {
-      const { data: currentUser } = await axios.get(`http://localhost:3000/users/${user.id}`);
+      const { data: currentUser } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
       const updatedWishlist = currentUser.wishlist?.filter(item => item.id !== productId) || [];
       
-      await axios.patch(`http://localhost:3000/users/${user.id}`, {
+      await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
         wishlist: updatedWishlist
       });
       
@@ -49,7 +49,7 @@ function Wishlist() {
   const addToCart = async (product) => {
     try {
       // Get current cart
-      const { data: currentUser } = await axios.get(`http://localhost:3000/users/${user.id}`);
+      const { data: currentUser } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
       const currentCart = currentUser.cart || [];
       
       // Check if item already exists in cart
@@ -75,7 +75,7 @@ function Wishlist() {
         ];
       }
 
-      await axios.patch(`http://localhost:3000/users/${user.id}`, {
+      await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
         cart: updatedCart
       });
 
