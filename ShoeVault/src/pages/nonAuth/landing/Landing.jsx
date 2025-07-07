@@ -1,0 +1,101 @@
+import React, { useEffect, useState } from "react";
+import Card from "../../../common/components/card/Card";
+import { GetAllProducts } from "../../../service/product";
+import Brand from "./Brand";
+import About from "./About";
+import Guarantee from "./MoreAbout";
+import ProductListCard from "../../../common/components/card/ProductListCard";
+
+function Landing() {
+  const [item, setItem] = useState([]);
+  const [item2, setItem2] = useState([]);
+  const [currentBanner, setCurrentBanner] = useState(0);
+
+  const bannerImages = [
+    "https://github.com/salmanfaris22/E-commerce/blob/main/src/Assets/mainkeBRand.jpg?raw=true",
+    "https://i.pinimg.com/1200x/a0/0a/39/a00a3996dd716284d5cae1eacb0761f4.jpg",
+    "https://i.pinimg.com/1200x/2a/b5/91/2ab5915b8d216b598c584f9a484bcee9.jpg",
+  ];
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const data = await GetAllProducts(0, 10);
+        const data2 = await GetAllProducts(11, 21);
+        setItem(data);
+        setItem2(data2);
+      } catch (err) {
+        console.log("Error in useEffect:", err);
+      }
+    }
+    fetchProducts();
+  }, []);
+
+  // Auto-change banner every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % bannerImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div>
+     <div className="relative w-full mb-4 h-[300px] sm:h-[400px] md:h-[450px] overflow-hidden rounded-lg shadow">
+  {bannerImages.map((src, index) => (
+    <img
+      key={index}
+      src={src}
+      alt="Brand banner"
+      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${
+        index === currentBanner ? "opacity-100" : "opacity-0"
+      }`}
+    />
+  ))}
+</div>
+      <div className="grid gap-2.5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
+        {item?.map((e) => (
+          <Card 
+            key={e?.id}
+            id={e?.id}
+            image={e?.image_url}
+            name={e?.name}
+            special_offer={e?.special_offer}
+            price={e?.price}
+          />
+        ))}
+      </div>
+
+      <Brand />
+      <About />
+
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ 
+  <div className="flex flex-col
+ items-center justify-center mb-6 text-center sm:text-left">
+    <h2 className="text-3xl font-bold text-gray-800">Products</h2>
+    <p className="mt-2 text-gray-600">Browse our premium collection</p>
+  </div>
+
+  <div className=" grid gap-2.5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+    {item?.map((e) => (
+      <ProductListCard
+        key={e?.id}
+        id={e?.id}
+        image={e?.image_url}
+        name={e?.name}
+        special_offer={e?.special_offer}
+        price={e?.price}
+        category={e?.category}
+        brand={e?.brand}
+      />
+    ))}
+  </div>
+</div>
+
+      <Guarantee />
+    </div>
+  );
+}
+
+export default Landing;
