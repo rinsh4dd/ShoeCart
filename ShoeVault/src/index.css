@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   /* 🌞 Light Theme Colors */
   --color-light-primary: #2bd447;
   --color-light-secondary: #4eda65;
@@ -37,9 +37,9 @@
   --color-white: #ffffff;
 }
 
-body{
+body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
-  -ms-overflow-style: none;  /* IE 10+ */
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
