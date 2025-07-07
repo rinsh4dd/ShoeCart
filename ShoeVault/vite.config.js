@@ -20,7 +20,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [tailwindcss(), react()],
-  base: "/shoeCart-Proj/",
+  base: "/",
   server: {
     watch: {
       ignored: ["/db.json", "/*.db.json"],
