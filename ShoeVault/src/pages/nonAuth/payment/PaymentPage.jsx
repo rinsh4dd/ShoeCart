@@ -113,7 +113,7 @@ function PaymentPage() {
         createdAt: new Date().toISOString()
       };
 
-      const { data: currentUser } = await axios.get(`http://localhost:3000/users/${user.id}`);
+      const { data: currentUser } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
       
       await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
         cart: [],
@@ -323,7 +323,7 @@ function PaymentPage() {
                       <p className="text-xs text-gray-500">Size: {item.size} | Qty: {item.quantity}</p>
                     </div>
                   </div>
-                  <p className="text-sm font-medium">₹{(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="text-sm font-medium">${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
               ))}
             </div>
