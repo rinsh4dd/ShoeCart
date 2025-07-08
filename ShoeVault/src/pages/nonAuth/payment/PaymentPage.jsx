@@ -115,7 +115,7 @@ function PaymentPage() {
 
       const { data: currentUser } = await axios.get(`http://localhost:3000/users/${user.id}`);
       
-      await axios.patch(`http://localhost:3000/users/${user.id}`, {
+      await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
         cart: [],
         orders: [...(currentUser.orders || []), newOrder],
         shippingAddress: billingAddress // Save address for future orders
