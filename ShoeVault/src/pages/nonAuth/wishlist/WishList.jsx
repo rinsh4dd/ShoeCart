@@ -7,13 +7,13 @@ import { CiHeart, CiShoppingCart, CiTrash } from "react-icons/ci";
 function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [checkingAuth, setCheckingAuth] = useState(true);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // Fetch user's wishlist
   useEffect(() => {
     if (!user) {
-      setCheckingAuth(false); // Auth checked, but no user
+      navigate("/login");
       return;
     }
 
@@ -25,20 +25,66 @@ function Wishlist() {
         console.error("Error fetching wishlist:", err);
       } finally {
         setLoading(false);
-        setCheckingAuth(false); // Done checking
       }
     };
 
     fetchWishlist();
-  }, [user]);
+  }, [user, navigate]);
 
-  if (checkingAuth) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-gray-600">Checking authentication...</p>
-      </div>
-    );
-  }
+  const removeFromWishlist = async (productId) => {
+    try {
+      const { data: currentUser } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+      const updatedWishlist = currentUser.wishlist?.filter(item => item.id !== productId) || [];
+      
+      await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
+        wishlist: updatedWishlist
+      });
+      
+      setWishlist(updatedWishlist);
+    } catch (err) {
+      console.error("Error removing from wishlist:", err);
+    }
+  };
+
+  const addToCart = async (product) => {
+    try {
+      // Get current cart
+      const { data: currentUser } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+      const currentCart = currentUser.cart || [];
+      
+      // Check if item already exists in cart
+      const existingItem = currentCart.find(item => 
+        item.id === product.id && item.size === (product.size || "M")
+      );
+
+      let updatedCart;
+      if (existingItem) {
+        updatedCart = currentCart.map(item =>
+          item.id === product.id && item.size === (product.size || "M")
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        updatedCart = [
+          ...currentCart,
+          {
+            ...product,
+            quantity: 1,
+            size: product.size || "M" // Default size if not specified
+          }
+        ];
+      }
+
+      await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
+        cart: updatedCart
+      });
+
+      alert("Item added to cart!");
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      alert("Failed to add item to cart");
+    }
+  };
 
   if (!user) {
     return (

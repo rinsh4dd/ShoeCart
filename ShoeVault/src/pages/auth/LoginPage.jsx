@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 import Silk from "../../common/ui/Silk";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+import { AuthContext } from "../../common/context/AuthProvider"; // ✅ Context import
 
 function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -14,6 +14,8 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const { login } = useContext(AuthContext); // ✅ Use login function from context
 
   const images = [
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/46f6a122-0450-4b19-8808-5604a2afe847/JORDAN+LUKA+4+PF.png",
@@ -31,14 +33,14 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    localStorage.setItem("isLoggedIn", true);
+
     try {
       const { data } = await axios.get(
         `https://shoecart-4ug1.onrender.com/users?email=${form.email}&password=${form.password}`
       );
 
       if (data.length > 0) {
-        localStorage.setItem("user", JSON.stringify(data[0]));
+        login(data[0]); // ✅ Trigger context update
         toast.success("Login successful! Redirecting...");
         setTimeout(() => navigate("/", { replace: true }), 1000);
       } else {
@@ -131,7 +133,9 @@ function LoginPage() {
                 name="password"
                 autoComplete="current-password"
                 value={form.password}
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, password: e.target.value })
+                }
                 className="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="••••••••"
                 required
@@ -197,7 +201,6 @@ function LoginPage() {
         </div>
       </motion.div>
 
-      {/* Toast container */}
       <ToastContainer
         position="top-center"
         autoClose={3000}

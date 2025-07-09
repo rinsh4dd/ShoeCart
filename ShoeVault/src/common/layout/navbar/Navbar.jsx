@@ -1,22 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { CiShoppingCart, CiHeart, CiUser } from "react-icons/ci";
 import { IoLogoAmplify } from "react-icons/io5";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../common/context/AuthProvider";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const navigate = useNavigate();
 
-  const storedUser = localStorage.getItem("user");
-  const user = storedUser ? JSON.parse(storedUser) : null;
+  const { user, loading, logout } = useContext(AuthContext);
+
+  if (loading) return null; // Wait until context is ready
+
+  // Common SweetAlert for all auth-protected actions
+  const requireLoginPrompt = (action = "continue") => {
+    return Swal.fire({
+      title: "Login Required",
+      text: `Please login to ${action}.`,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Login Now",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#6366f1",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login");
+      }
+    });
+  };
 
   const handleProfileClick = () => {
     if (user) {
       setShowProfileDropdown(!showProfileDropdown);
     } else {
-      navigate("/login");
+      requireLoginPrompt("access your profile");
     }
   };
 
@@ -24,15 +44,16 @@ function Navbar() {
     if (user) {
       navigate("/cart");
     } else {
-      navigate("/login");
+      requireLoginPrompt("view your cart");
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setShowProfileDropdown(false);
-    navigate("/");
-    window.location.reload();
+  const handleWishlistClick = () => {
+    if (user) {
+      navigate("/wishlist");
+    } else {
+      requireLoginPrompt("access your wishlist");
+    }
   };
 
   const navItems = [
@@ -40,6 +61,25 @@ function Navbar() {
     { label: "Products", path: "/products" },
     { label: "About", path: "/about" },
   ];
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Confirm Logout",
+      text: "Are you sure you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Logout",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#ef4444", // Tailwind red-500
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout(); // from context
+        setShowProfileDropdown(false);
+        setIsOpen(false);
+        navigate("/");
+      }
+    });
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md w-full">
@@ -72,7 +112,7 @@ function Navbar() {
               className="cursor-pointer hover:text-red-500"
             />
             <CiHeart
-              onClick={() => navigate("/wishlist")}
+              onClick={handleWishlistClick}
               className="cursor-pointer hover:text-red-500"
             />
             <div
@@ -106,15 +146,7 @@ function Navbar() {
                   Report Bug
                 </button>
                 <button
-                  onClick={() => {
-                    const confirmLogout = window.confirm(
-                      "Are you sure you want to logout?"
-                    );
-                    if (confirmLogout) {
-                      handleLogout();
-                      setIsOpen(false);
-                    }
-                  }}
+                  onClick={handleLogout}
                   className="w-full text-left px-3 py-1 text-red-500 hover:bg-gray-100"
                 >
                   Logout
@@ -137,7 +169,6 @@ function Navbar() {
       {isOpen && (
         <div className="md:hidden px-4 pb-4">
           <div className="flex flex-col gap-4 bg-white rounded shadow p-4 text-[16px]">
-            {/* Nav links */}
             {navItems.map(({ label, path }) => (
               <div
                 key={label}
@@ -151,7 +182,7 @@ function Navbar() {
               </div>
             ))}
 
-            {/* Icons Row */}
+            {/* Icons */}
             <div className="flex gap-6 text-2xl mt-2 justify-center">
               <CiShoppingCart
                 onClick={() => {
@@ -162,7 +193,7 @@ function Navbar() {
               />
               <CiHeart
                 onClick={() => {
-                  navigate("/wishlist");
+                  handleWishlistClick();
                   setIsOpen(false);
                 }}
                 className="cursor-pointer hover:text-red-500"
@@ -176,13 +207,12 @@ function Navbar() {
               />
             </div>
 
-            {/* Profile Actions */}
+            {/* Profile Info */}
             {user && (
               <div className="flex flex-col gap-1 mt-4 text-sm">
                 <span className="text-gray-600">
                   Signed in as <b>{user.name}</b>
                 </span>
-
                 <button
                   onClick={() => {
                     navigate("/orders");
@@ -192,25 +222,14 @@ function Navbar() {
                 >
                   Track Orders
                 </button>
-
                 <button className="text-left px-3 py-1 rounded hover:bg-gray-100">
                   Contact
                 </button>
-
                 <button className="text-left px-3 py-1 rounded hover:bg-gray-100">
                   Report Bug
                 </button>
-
                 <button
-                  onClick={() => {
-                    const confirmLogout = window.confirm(
-                      "Are you sure you want to logout?"
-                    );
-                    if (confirmLogout) {
-                      handleLogout();
-                      setIsOpen(false);
-                    }
-                  }}
+                  onClick={handleLogout}
                   className="text-left px-3 py-1 text-red-500 rounded hover:bg-gray-100"
                 >
                   Logout

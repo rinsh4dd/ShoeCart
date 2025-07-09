@@ -5,19 +5,17 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // 🆕 Add loading flag
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Load user from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-    setLoading(false); // ✅ Done loading after mount
+    setLoading(false);
   }, []);
 
-  // Sync user to localStorage on change
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
@@ -26,17 +24,8 @@ export default function AuthProvider({ children }) {
     }
   }, [user]);
 
-  // Login with userData
-  const login = (userData) => {
-    setUser(userData);
-  };
-
-  // Register does the same
-  const register = (userData) => {
-    setUser(userData);
-  };
-
-  // Logout clears user
+  const login = (userData) => setUser(userData);
+  const register = (userData) => setUser(userData);
   const logout = () => {
     setUser(null);
     navigate("/");
@@ -44,7 +33,7 @@ export default function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{ user, login, register, logout, loading }}>
-      {children}
+      {!loading && children} {/* ✅ Wait until loading finishes */}
     </AuthContext.Provider>
   );
 }
