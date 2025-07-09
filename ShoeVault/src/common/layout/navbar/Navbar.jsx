@@ -106,7 +106,15 @@ function Navbar() {
                   Report Bug
                 </button>
                 <button
-                  onClick={handleLogout}
+                  onClick={() => {
+                    const confirmLogout = window.confirm(
+                      "Are you sure you want to logout?"
+                    );
+                    if (confirmLogout) {
+                      handleLogout();
+                      setIsOpen(false);
+                    }
+                  }}
                   className="w-full text-left px-3 py-1 text-red-500 hover:bg-gray-100"
                 >
                   Logout
@@ -195,8 +203,13 @@ function Navbar() {
 
                 <button
                   onClick={() => {
-                    handleLogout();
-                    setIsOpen(false);
+                    const confirmLogout = window.confirm(
+                      "Are you sure you want to logout?"
+                    );
+                    if (confirmLogout) {
+                      handleLogout();
+                      setIsOpen(false);
+                    }
                   }}
                   className="text-left px-3 py-1 text-red-500 rounded hover:bg-gray-100"
                 >

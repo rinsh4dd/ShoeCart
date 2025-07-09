@@ -22,7 +22,7 @@ const About = () => {
     <div className="max-w-xs text-center">
       <h1 className="text-2xl md:text-3xl font-bold mb-3 text-gray-800">About Us</h1> {/* Reduced text size and margin */}
       <p className="text-gray-600 mb-4 leading-relaxed text-sm md:text-base"> {/* Reduced text size and margin */}
-        At [Your Brand Name], we craft premium materials that harmonize <span className="font-medium text-gray-800">comfort, sustainability, and thoughtful design</span>. Every piece is meticulously engineered using ethically sourced fabrics and eco-conscious processes.
+        At ShoeCart, we craft premium materials that harmonize <span className="font-medium text-gray-800">comfort, sustainability, and thoughtful design</span>. Every piece is meticulously engineered using ethically sourced fabrics and eco-conscious processes.
       </p>
       <Link
         to="/about"

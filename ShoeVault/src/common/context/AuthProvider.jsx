@@ -5,13 +5,16 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const navigate=useNavigate()
+  const [loading, setLoading] = useState(true); // 🆕 Add loading flag
+  const navigate = useNavigate();
+
   // Load user from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    setLoading(false); // ✅ Done loading after mount
   }, []);
 
   // Sync user to localStorage on change
@@ -28,7 +31,7 @@ export default function AuthProvider({ children }) {
     setUser(userData);
   };
 
-  // Register does the same (for simplicity)
+  // Register does the same
   const register = (userData) => {
     setUser(userData);
   };
@@ -36,11 +39,11 @@ export default function AuthProvider({ children }) {
   // Logout clears user
   const logout = () => {
     setUser(null);
-    navigate("/")
+    navigate("/");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

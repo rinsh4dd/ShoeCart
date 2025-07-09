@@ -40,7 +40,7 @@ function LoginPage() {
       if (data.length > 0) {
         localStorage.setItem("user", JSON.stringify(data[0]));
         toast.success("Login successful! Redirecting...");
-        setTimeout(() => navigate("/", { replace: true }), 2000);
+        setTimeout(() => navigate("/", { replace: true }), 1000);
       } else {
         toast.error("Invalid email or password");
       }

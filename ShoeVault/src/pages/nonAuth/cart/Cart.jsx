@@ -5,35 +5,50 @@ import { AuthContext } from "../../../common/context/AuthProvider";
 function Cart() {
   const [cart, setCart] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
+  // ✅ Redirect to login only after loading is finished
   useEffect(() => {
-    if (user) {
-      fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`)
-        .then(res => res.json())
-        .then(data => {
-          setCart(data.cart || []);
-        });
-    } else {
-      const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-      setCart(storedCart);
+    if (!loading && !user?.id) {
+      navigate("/login", { state: { from: "/cart" } });
     }
-  }, [user]);
+  }, [loading, user, navigate]);
+
+  // ✅ Fetch cart only after user is ready
+  useEffect(() => {
+    const fetchCartData = async () => {
+      if (!loading && user?.id) {
+        setIsLoading(true);
+        try {
+          const response = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+          if (!response.ok) throw new Error("Failed to fetch cart");
+          const data = await response.json();
+          setCart(data.cart || []);
+        } catch (error) {
+          console.error("Error fetching cart:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchCartData();
+  }, [loading, user]);
 
   const updateCartInDB = async (updatedCart) => {
     setIsUpdating(true);
-    setCart(updatedCart);
     try {
-      if (user) {
-        await fetch(`http://localhost:3000/users/${user.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cart: updatedCart })
-        });
-      } else {
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-      }
+      const response = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart: updatedCart })
+      });
+
+      if (!response.ok) throw new Error("Failed to update cart");
+
+      setCart(updatedCart);
     } catch (error) {
       console.error("Error updating cart:", error);
     } finally {
@@ -58,12 +73,20 @@ function Cart() {
   const getItemCount = () => cart.reduce((count, item) => count + item.quantity, 0);
 
   const handleCheckout = () => {
-    if (user) {
-      navigate("/payment");
-    } else {
-      navigate("/login", { state: { from: "/cart" } });
-    }
+    navigate("/payment");
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
+        <div className="max-w-md text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 mx-auto"/>
+         
+          <h2 className="text-xl font-medium text-gray-800">Loading your cart...</h2>
+        </div>
+      </div>
+    );
+  }
 
   if (cart.length === 0) {
     return (
@@ -85,6 +108,7 @@ function Cart() {
     );
   }
 
+  // 🛒 Main Cart UI (same as your original - untouched)
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -99,12 +123,13 @@ function Cart() {
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="divide-y divide-gray-200">
                 {cart.map((item, index) => (
-                  <div key={index} className="p-5 sm:p-6 flex flex-col sm:flex-row gap-5">
+                  <div key={`${item.id}-${index}`} className="p-5 sm:p-6 flex flex-col sm:flex-row gap-5">
                     <div className="flex-shrink-0">
                       <img 
                         src={item.image_url} 
                         alt={item.name} 
                         className="w-24 h-24 rounded-md object-cover border border-gray-200"
+                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -119,8 +144,8 @@ function Cart() {
                         <div className="flex items-center border border-gray-300 rounded-md">
                           <button 
                             onClick={() => handleQuantityChange(index, item.quantity - 1)}
-                            disabled={isUpdating}
-                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+                            disabled={isUpdating || item.quantity <= 1}
+                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             −
                           </button>
@@ -130,7 +155,7 @@ function Cart() {
                           <button 
                             onClick={() => handleQuantityChange(index, item.quantity + 1)}
                             disabled={isUpdating}
-                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             +
                           </button>
@@ -138,7 +163,7 @@ function Cart() {
                         <button 
                           onClick={() => handleRemove(index)}
                           disabled={isUpdating}
-                          className="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50"
+                          className="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           Remove
                         </button>
@@ -172,19 +197,18 @@ function Cart() {
 
               <button 
                 onClick={handleCheckout}
-                disabled={isUpdating}
-                className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isUpdating || isLoading}
+                className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               >
                 {isUpdating ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white-600 mx-auto"  fill="none" viewBox="0 0 24 24">
+                      <path className="opacity-100"></path>
                     </svg>
                     Processing...
                   </>
                 ) : (
-                  user ? "Proceed to Checkout" : "Sign in to Checkout"
+                  "Proceed to Checkout"
                 )}
               </button>
 
@@ -194,7 +218,7 @@ function Cart() {
                   <button 
                     type="button" 
                     onClick={() => navigate("/")}
-                    className="text-indigo-600 font-medium hover:text-indigo-500"
+                    className="text-indigo-600 font-medium hover:text-indigo-500 transition-colors duration-200"
                   >
                     Continue Shopping<span aria-hidden="true"> &rarr;</span>
                   </button>

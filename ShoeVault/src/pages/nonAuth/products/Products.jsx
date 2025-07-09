@@ -128,9 +128,13 @@ function Products() {
       {/* Product Grid */}
       <div className="min-h-[400px]">
         {loading ? (
-          <div className="text-center text-gray-400 py-10">
-            Loading products...
-          </div>
+          <>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 mx-auto"></div>
+
+            <div className="text-center text-gray-400 py-10">
+              Loading products...
+            </div>
+          </>
         ) : filteredItems.length > 0 ? (
           <div className="grid gap-6 justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredItems.map((p) => (

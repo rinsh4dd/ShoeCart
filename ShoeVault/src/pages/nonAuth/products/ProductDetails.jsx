@@ -196,7 +196,7 @@ function ProductDetails() {
             <p className="text-2xl font-semibold text-gray-800">${product.price}</p>
 
             {product.special_offer !== "None" && (
-              <span className="inline-block bg-red-500 text-white text-sm font-medium py-1.5 px-4 rounded-full">
+              <span className="inline-block justify-center items-center bg-red-500 w-[250px]  text-white text-sm font-medium py-1.5 px-4 rounded-full">
                 {product.special_offer}
               </span>
             )}
@@ -222,7 +222,6 @@ function ProductDetails() {
                     key={shoeSize}
                     onClick={() => {
                       setSize(shoeSize);
-                      toast.info(`Size ${shoeSize} selected`);
                     }}
                     className={`px-4 py-2 border rounded-md transition-colors ${
                       size === shoeSize

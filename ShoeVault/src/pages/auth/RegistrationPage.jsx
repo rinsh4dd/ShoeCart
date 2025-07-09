@@ -115,7 +115,7 @@ function RegistrationPage() {
       // Show success notification
       const alertBox = document.createElement("div");
       alertBox.innerHTML = `
-        <div class="fixed top-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
+        <div class=" z-10 fixed top-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
           </svg>
@@ -237,8 +237,10 @@ function RegistrationPage() {
                 } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition`}
                 placeholder="••••••••"
               />
+
+              
               <div
-                className="absolute inset-y-0 right-3 top-[-7px] flex items-center cursor-pointer text-gray-600"
+                className="absolute inset-y-0  flex items-center right-3 mb-2 cursor-pointer text-gray-600"
                 onClick={() => setShowPassword((prev) => !prev)}
               >
                 {showPassword ? (
