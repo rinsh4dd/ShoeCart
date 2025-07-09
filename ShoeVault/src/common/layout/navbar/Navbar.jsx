@@ -15,72 +15,81 @@ function Navbar() {
 
   if (loading) return null; // Wait until context is ready
 
-  // Common SweetAlert for all auth-protected actions
-  const requireLoginPrompt = (action = "continue") => {
-    return Swal.fire({
-      title: "Login Required",
-      text: `Please login to ${action}.`,
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonText: "Login Now",
-      cancelButtonText: "Cancel",
-      confirmButtonColor: "#6366f1",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/login");
-      }
-    });
-  };
-
-  const handleProfileClick = () => {
-    if (user) {
-      setShowProfileDropdown(!showProfileDropdown);
-    } else {
-      requireLoginPrompt("access your profile");
+const requireLoginPrompt = (action = "continue") => {
+  return Swal.fire({
+    title: "Login Required",
+    text: `Please login to ${action}.`,
+    icon: "info",
+    showCancelButton: true,
+    confirmButtonText: "Login Now",
+    cancelButtonText: "Cancel",
+    confirmButtonColor: "#6366f1",
+    width: "90%",
+    padding: "1.5rem",
+    customClass: {
+      popup: "rounded-xl",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      navigate("/login");
     }
-  };
+  });
+};
 
-  const handleCartClick = () => {
-    if (user) {
-      navigate("/cart");
-    } else {
-      requireLoginPrompt("view your cart");
-    }
-  };
+const handleProfileClick = () => {
+  if (user) {
+    setShowProfileDropdown(!showProfileDropdown);
+  } else {
+    requireLoginPrompt("access your profile");
+  }
+};
 
-  const handleWishlistClick = () => {
-    if (user) {
-      navigate("/wishlist");
-    } else {
-      requireLoginPrompt("access your wishlist");
+const handleCartClick = () => {
+  if (user) {
+    navigate("/cart");
+  } else {
+    requireLoginPrompt("view your cart");
+  }
+};
+
+const handleWishlistClick = () => {
+  if (user) {
+    navigate("/wishlist");
+  } else {
+    requireLoginPrompt("access your wishlist");
+  }
+};
+
+const handleLogout = () => {
+  Swal.fire({
+    title: "Confirm Logout",
+    text: "Are you sure you want to logout?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Logout",
+    cancelButtonText: "Cancel",
+    confirmButtonColor: "#ef4444",
+    width: "90%",
+    padding: "1.5rem",
+    customClass: {
+      popup: "rounded-xl",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      logout();
+      setShowProfileDropdown(false);
+      setIsOpen(false);
+      navigate("/");
     }
-  };
+  });
+};
 
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Products", path: "/products" },
     { label: "About", path: "/about" },
   ];
-
-  const handleLogout = () => {
-    Swal.fire({
-      title: "Confirm Logout",
-      text: "Are you sure you want to logout?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Logout",
-      cancelButtonText: "Cancel",
-      confirmButtonColor: "#ef4444", // Tailwind red-500
-    }).then((result) => {
-      if (result.isConfirmed) {
-        logout(); // from context
-        setShowProfileDropdown(false);
-        setIsOpen(false);
-        navigate("/");
-      }
-    });
-  };
-
+  
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md w-full">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
