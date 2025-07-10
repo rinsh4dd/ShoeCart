@@ -130,42 +130,59 @@ function OrderDetails() {
           </button>
         </div>
 
-        <div className="bg-white shadow overflow-hidden rounded-lg mb-8">
-          <div className="px-6 py-5 border-b border-gray-200">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Order #{order.id}</h1>
-                <p className="mt-1 text-sm text-gray-500">
-                  Placed on {formatDate(order.createdAt)}
-                </p>
-              </div>
-              <div className="mt-4 sm:mt-0">
-                {getStatusBadge(order.orderStatus)}
-              </div>
-            </div>
-          </div>
+       <div className="bg-white shadow-lg rounded-2xl overflow-hidden mb-10 print:p-6 print:shadow-none print:border print:rounded-none print:mb-0">
+  {/* Header */}
+  <div className="px-6 py-5 border-b border-gray-200">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h1 className="text-2xl font-bold text-gray-900">Order #{order.id}</h1>
+        <p className="mt-1 text-sm text-gray-500">
+          Placed on {formatDate(order.createdAt)}
+        </p>
+      </div>
+      <div className="mt-4 sm:mt-0">
+        {getStatusBadge(order.orderStatus)}
+      </div>
+    </div>
+  </div>
 
-          <div className="px-6 py-5">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">Shipping Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">Shipping Address</h3>
-                <p className="mt-1 text-sm text-gray-900">
-                  {user.shippingAddress?.street || "123 Main St"}<br />
-                  {user.shippingAddress?.city || "Anytown"}, {user.shippingAddress?.state || "CA"} {user.shippingAddress?.zip || "12345"}<br />
-                  {user.shippingAddress?.country || "United States"}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">Contact Information</h3>
-                <p className="mt-1 text-sm text-gray-900">
-                  {user.email}<br />
-                  {user.phone || "Not provided"}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+  {/* Body */}
+  <div className="px-6 py-6">
+    <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Shipping Information</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-800">
+      {/* Address */}
+      <div>
+        <h3 className="text-gray-500 font-medium mb-1">Shipping Address</h3>
+        <p className="leading-relaxed">
+          {user.shippingAddress?.street || "123 Main St"}<br />
+          {user.shippingAddress?.city || "Anytown"},{" "}
+          {user.shippingAddress?.state || "CA"} {user.shippingAddress?.zip || "12345"}<br />
+          {user.shippingAddress?.country || "United States"}
+        </p>
+      </div>
+
+      {/* Contact Info */}
+      <div>
+        <h3 className="text-gray-500 font-medium mb-1">Contact Information</h3>
+        <p className="leading-relaxed">
+          {user.email}<br />
+          {user.phone || "Not provided"}
+        </p>
+      </div>
+    </div>
+
+    {/* Print Button */}
+    <div className="mt-10 flex justify-end print:hidden">
+      <button
+        onClick={() => window.print()}
+        className="inline-flex items-center px-5 py-2 rounded-full bg-red-500 text-white text-sm font-medium hover:bg-gray-800 transition-all shadow"
+      >
+        Print Order
+      </button>
+    </div>
+  </div>
+</div>
+
 
         <div className="bg-white shadow overflow-hidden rounded-lg mb-8">
           <div className="px-6 py-5 border-b border-gray-200">
@@ -252,7 +269,7 @@ function OrderDetails() {
             <div className="px-6 py-5">
               <div className="flex justify-between mb-2">
                 <p className="text-sm text-gray-600">Subtotal</p>
-                <p className="text-sm text-gray-900">₹{order.totalAmount.toFixed(2)}</p>
+                <p className="text-sm text-gray-900">${order.totalAmount.toFixed(2)}</p>
               </div>
               <div className="flex justify-between mb-2">
                 <p className="text-sm text-gray-600">Shipping</p>
@@ -260,26 +277,20 @@ function OrderDetails() {
               </div>
               <div className="flex justify-between mb-2">
                 <p className="text-sm text-gray-600">Tax</p>
-                <p className="text-sm text-gray-900">₹{(order.totalAmount * 0.18).toFixed(2)}</p>
+                <p className="text-sm text-gray-900">${(order.totalAmount * 0.18).toFixed(2)}</p>
               </div>
               <div className="flex justify-between pt-4 mt-4 border-t border-gray-200">
                 <p className="text-base font-medium text-gray-900">Total</p>
                 <p className="text-base font-medium text-gray-900">
-                  ₹{(order.totalAmount * 1.18).toFixed(2)}
+                  ${(order.totalAmount * 1.18).toFixed(2)}
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 flex justify-end">
-          <button
-            onClick={() => window.print()}
-            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Print Order
-          </button>
-        </div>
+       
+
       </div>
     </div>
   );

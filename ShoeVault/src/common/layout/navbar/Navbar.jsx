@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { CiShoppingCart, CiHeart, CiUser } from "react-icons/ci";
 import { IoLogoAmplify } from "react-icons/io5";
 import { HiMenu, HiX } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../common/context/AuthProvider";
 
@@ -10,86 +10,92 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { user, loading, logout } = useContext(AuthContext);
+  if (loading) return null;
 
-  if (loading) return null; // Wait until context is ready
+  // Check active paths
+  const isCartActive = location.pathname === "/cart";
+  const isWishlistActive = location.pathname === "/wishlist";
+  const isProfileActive = location.pathname.startsWith("/profile");
+  const isOrdersActive = location.pathname === "/orders";
 
-const requireLoginPrompt = (action = "continue") => {
-  return Swal.fire({
-    title: "Login Required",
-    text: `Please login to ${action}.`,
-    icon: "info",
-    showCancelButton: true,
-    confirmButtonText: "Login Now",
-    cancelButtonText: "Cancel",
-    confirmButtonColor: "#6366f1",
-    width: "90%",
-    padding: "1.5rem",
-    customClass: {
-      popup: "rounded-xl",
-    },
-  }).then((result) => {
-    if (result.isConfirmed) {
-      navigate("/login");
+  const requireLoginPrompt = (action = "continue") => {
+    return Swal.fire({
+      title: "Login Required",
+      text: `Please login to ${action}.`,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Login Now",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#6366f1",
+      width: "90%",
+      padding: "1.5rem",
+      customClass: {
+        popup: "rounded-xl",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login");
+      }
+    });
+  };
+
+  const handleProfileClick = () => {
+    if (user) {
+      setShowProfileDropdown(!showProfileDropdown);
+    } else {
+      requireLoginPrompt("access your profile");
     }
-  });
-};
+  };
 
-const handleProfileClick = () => {
-  if (user) {
-    setShowProfileDropdown(!showProfileDropdown);
-  } else {
-    requireLoginPrompt("access your profile");
-  }
-};
-
-const handleCartClick = () => {
-  if (user) {
-    navigate("/cart");
-  } else {
-    requireLoginPrompt("view your cart");
-  }
-};
-
-const handleWishlistClick = () => {
-  if (user) {
-    navigate("/wishlist");
-  } else {
-    requireLoginPrompt("access your wishlist");
-  }
-};
-
-const handleLogout = () => {
-  Swal.fire({
-    title: "Confirm Logout",
-    text: "Are you sure you want to logout?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Logout",
-    cancelButtonText: "Cancel",
-    confirmButtonColor: "#ef4444",
-    width: "90%",
-    padding: "1.5rem",
-    customClass: {
-      popup: "rounded-xl",
-    },
-  }).then((result) => {
-    if (result.isConfirmed) {
-      logout();
-      setShowProfileDropdown(false);
-      setIsOpen(false);
-      navigate("/");
+  const handleCartClick = () => {
+    if (user) {
+      navigate("/cart");
+    } else {
+      requireLoginPrompt("view your cart");
     }
-  });
-};
+  };
+
+  const handleWishlistClick = () => {
+    if (user) {
+      navigate("/wishlist");
+    } else {
+      requireLoginPrompt("access your wishlist");
+    }
+  };
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Confirm Logout",
+      text: "Are you sure you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Logout",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#ef4444",
+      width: "90%",
+      padding: "1.5rem",
+      customClass: {
+        popup: "rounded-xl",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        setShowProfileDropdown(false);
+        setIsOpen(false);
+        navigate("/");
+      }
+    });
+  };
 
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Products", path: "/products" },
     { label: "About", path: "/about" },
   ];
-  
+
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md w-full">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
@@ -108,7 +114,11 @@ const handleLogout = () => {
             <div
               key={label}
               onClick={() => navigate(path)}
-              className="cursor-pointer text-[16px] hover:text-red-500"
+              className={`cursor-pointer text-[16px] transition duration-200 ${
+                location.pathname === path
+                  ? "text-red-500 font-semibold"
+                  : "text-gray-700 hover:text-red-500"
+              }`}
             >
               {label}
             </div>
@@ -118,21 +128,25 @@ const handleLogout = () => {
           <div className="flex gap-4 text-2xl relative">
             <CiShoppingCart
               onClick={handleCartClick}
-              className="cursor-pointer hover:text-red-500"
+              className={`cursor-pointer transition duration-200 ${
+                isCartActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+              }`}
             />
             <CiHeart
               onClick={handleWishlistClick}
-              className="cursor-pointer hover:text-red-500"
+              className={`cursor-pointer transition duration-200 ${
+                isWishlistActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+              }`}
             />
             <div
-              className="flex items-center gap-1 cursor-pointer hover:text-red-500"
+              className={`flex items-center gap-1 cursor-pointer transition duration-200 ${
+                isProfileActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+              }`}
               onClick={handleProfileClick}
             >
               <CiUser />
               {user && (
-                <span className="text-[16px] font-medium text-gray-700">
-                  {user.name}
-                </span>
+                <span className="text-[16px] font-medium">{user.name}</span>
               )}
             </div>
 
@@ -144,7 +158,9 @@ const handleLogout = () => {
                 </div>
                 <button
                   onClick={() => navigate("/orders")}
-                  className="w-full text-left px-3 py-1 text-gray-500 hover:bg-gray-100"
+                  className={`w-full text-left px-3 py-1 hover:bg-gray-100 ${
+                    isOrdersActive ? "text-red-500" : "text-gray-500"
+                  }`}
                 >
                   Track Orders
                 </button>
@@ -185,7 +201,11 @@ const handleLogout = () => {
                   navigate(path);
                   setIsOpen(false);
                 }}
-                className="cursor-pointer hover:text-red-500"
+                className={`cursor-pointer ${
+                  location.pathname === path
+                    ? "text-red-500 font-semibold"
+                    : "hover:text-red-500 text-gray-700"
+                }`}
               >
                 {label}
               </div>
@@ -195,24 +215,34 @@ const handleLogout = () => {
             <div className="flex gap-6 text-2xl mt-2 justify-center">
               <CiShoppingCart
                 onClick={() => {
-                  handleCartClick();
+                  navigate("/cart");
                   setIsOpen(false);
                 }}
-                className="cursor-pointer hover:text-red-500"
+                className={`cursor-pointer transition duration-200 ${
+                  isCartActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+                }`}
               />
               <CiHeart
                 onClick={() => {
                   handleWishlistClick();
                   setIsOpen(false);
                 }}
-                className="cursor-pointer hover:text-red-500"
+                className={`cursor-pointer transition duration-200 ${
+                  isWishlistActive
+                    ? "text-red-500"
+                    : "hover:text-red-500 text-gray-700"
+                }`}
               />
               <CiUser
                 onClick={() => {
                   handleProfileClick();
                   setIsOpen(false);
                 }}
-                className="cursor-pointer hover:text-red-500"
+                className={`cursor-pointer transition duration-200 ${
+                  isProfileActive
+                    ? "text-red-500"
+                    : "hover:text-red-500 text-gray-700"
+                }`}
               />
             </div>
 
@@ -227,7 +257,9 @@ const handleLogout = () => {
                     navigate("/orders");
                     setIsOpen(false);
                   }}
-                  className="text-left px-3 py-1 rounded hover:bg-gray-100"
+                  className={`text-left px-3 py-1 rounded hover:bg-gray-100 ${
+                    isOrdersActive ? "text-red-500" : ""
+                  }`}
                 >
                   Track Orders
                 </button>
