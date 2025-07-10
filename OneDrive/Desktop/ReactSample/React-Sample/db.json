@@ -1,0 +1,68 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Learning React is Fun",
+      "body": "React helps build reusable UI components.",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Mastering useReducer",
+      "body": "useReducer is useful when state logic is complex.",
+      "userId": 2
+    },
+    {
+      "id": "cf54",
+      "title": "New Blog",
+      "body": "This blog was posted using Axios POST!",
+      "userId": 5
+    },
+    {
+      "id": "2790",
+      "title": "New Blog",
+      "body": "This blog was posted using Axios POST!",
+      "userId": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "userId": 2,
+      "comment": "Great post! I also love React."
+    },
+    {
+      "id": 2,
+      "postId": 1,
+      "userId": 3,
+      "comment": "Thanks, this was very helpful."
+    },
+    {
+      "id": 3,
+      "postId": 2,
+      "userId": 1,
+      "comment": "Reducer is a game changer!"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "name": "Rinshad",
+      "role": "Frontend Developer",
+      "email": "rinshad@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Fajis",
+      "role": "Backend Developer",
+      "email": "fajis@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Amina",
+      "role": "UI/UX Designer",
+      "email": "amina@example.com"
+    }
+  ]
+}

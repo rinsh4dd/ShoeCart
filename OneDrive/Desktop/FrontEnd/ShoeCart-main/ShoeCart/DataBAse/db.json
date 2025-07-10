@@ -1,0 +1,925 @@
+{
+  "users": [
+    {
+      "id": "f641",
+      "name": "Rinshad",
+      "email": "rinshadcontacts@gmail.com",
+      "password": "Rinshad123@!",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1751915476568,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "S",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 115,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "createdAt": "2025-07-07T19:11:16.568Z"
+        },
+        {
+          "id": 1751915654762,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "M",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 115,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "createdAt": "2025-07-07T19:14:14.762Z"
+        },
+        {
+          "id": 1751915713674,
+          "items": [
+            {
+              "id": "10",
+              "name": "New Balance Fresh Foam 1080v10",
+              "price": 150,
+              "size": "XL",
+              "quantity": 1,
+              "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d7a7be55e6c94448a3181716f838fa22_9366/4DFWD_3_Running_Shoes_Grey_IG8980_HM1.jpg"
+            }
+          ],
+          "totalAmount": 150,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "createdAt": "2025-07-07T19:15:13.674Z"
+        },
+        {
+          "id": 1751915755486,
+          "items": [
+            {
+              "id": "10",
+              "name": "New Balance Fresh Foam 1080v10",
+              "price": 150,
+              "size": "M",
+              "quantity": 1,
+              "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d7a7be55e6c94448a3181716f838fa22_9366/4DFWD_3_Running_Shoes_Grey_IG8980_HM1.jpg"
+            }
+          ],
+          "totalAmount": 150,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "createdAt": "2025-07-07T19:15:55.486Z"
+        },
+        {
+          "id": 1751915957636,
+          "items": [
+            {
+              "id": "6",
+              "name": "Nike Air Force 1",
+              "price": 100,
+              "size": "XL",
+              "quantity": 1,
+              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
+            }
+          ],
+          "totalAmount": 100,
+          "paymentStatus": "completed",
+          "orderStatus": "paid",
+          "createdAt": "2025-07-07T19:19:17.636Z"
+        },
+        {
+          "id": 1751916588876,
+          "items": [
+            {
+              "id": "7",
+              "name": "Adidas Superstar",
+              "price": 85,
+              "size": "S",
+              "quantity": 2,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6c3cc4a0-2bf4-4a7c-a2ba-c83875642bc5/NIKE+CORTEZ+TXT.png"
+            }
+          ],
+          "totalAmount": 170,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "createdAt": "2025-07-07T19:29:48.876Z"
+        },
+        {
+          "id": 1751917302374,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "M",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            },
+            {
+              "id": "9",
+              "name": "Reebok Zig Kinetica",
+              "price": 120,
+              "size": "S",
+              "quantity": 1,
+              "image_url": "https://nb.scene7.com/is/image/NB/u9060eca_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880"
+            }
+          ],
+          "totalAmount": 235,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "createdAt": "2025-07-07T19:41:42.374Z"
+        },
+        {
+          "id": 1751917436797,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "S",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 115,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "VISA ****8888",
+          "billingAddress": {
+            "street": "chirakkal House Kallingal klpy",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-07T19:43:56.797Z"
+        }
+      ],
+      "wishlist": [],
+      "created_at": "2025-07-07T11:11:56.254Z",
+      "shippingAddress": {
+        "street": "chirakkal House Kallingal klpy",
+        "city": "tirur",
+        "state": "kerala",
+        "zip": "676551",
+        "country": "India"
+      }
+    },
+    {
+      "id": "5869",
+      "name": "zoombi",
+      "email": "zoombi@gmaiil.com",
+      "password": "Zoombi121!",
+      "role": "user",
+      "isBlock": false,
+      "cart": [
+        {
+          "id": "2",
+          "name": "New Balance",
+          "price": 150,
+          "size": "L",
+          "quantity": 1,
+          "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
+        },
+        {
+          "id": "7",
+          "name": "Adidas Superstar",
+          "price": 85,
+          "size": "XL",
+          "quantity": 1,
+          "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6c3cc4a0-2bf4-4a7c-a2ba-c83875642bc5/NIKE+CORTEZ+TXT.png"
+        }
+      ],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-07T11:22:42.309Z"
+    },
+    {
+      "id": "d8b1",
+      "name": "sulaiman",
+      "email": "sulu@gmail.com",
+      "password": "Sulu121!",
+      "role": "user",
+      "isBlock": false,
+      "cart": [
+        {
+          "id": "2",
+          "name": "New Balance",
+          "price": 150,
+          "size": "M",
+          "quantity": 1,
+          "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
+        },
+        {
+          "id": "3",
+          "name": "Nike X-3 Sh",
+          "price": 115,
+          "size": "L",
+          "quantity": 1,
+          "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+        }
+      ],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-07T12:54:37.683Z"
+    },
+    {
+      "id": "d5e0",
+      "name": "Mohammed Rinshad",
+      "email": "rinsh4dd@gmail.con",
+      "password": "Rinshad321!",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1751918558510,
+          "items": [
+            {
+              "id": "6",
+              "name": "Nike Air Force 1",
+              "price": 100,
+              "size": "S",
+              "quantity": 1,
+              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
+            }
+          ],
+          "totalAmount": 100,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "VISA ****8907",
+          "billingAddress": {
+            "street": "Rinshad",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-07T20:02:38.510Z"
+        },
+        {
+          "id": 1751920437888,
+          "items": [
+            {
+              "id": "6",
+              "name": "Nike Air Force 1",
+              "price": 100,
+              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg",
+              "brand": "Nike",
+              "quantity": 1,
+              "size": "M"
+            }
+          ],
+          "totalAmount": 100,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "VISA ****7890",
+          "billingAddress": {
+            "street": "Rinshad",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-07T20:33:57.888Z"
+        }
+      ],
+      "wishlist": [],
+      "created_at": "2025-07-07T19:59:04.474Z",
+      "shippingAddress": {
+        "street": "Rinshad",
+        "city": "tirur",
+        "state": "kerala",
+        "zip": "676551",
+        "country": "India"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Puma",
+      "description": "Comfortable and stylish running shoes with superior cushioning.",
+      "price": 180,
+      "category": "Men",
+      "available_sizes": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "brand": "Puma",
+      "image_url": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/396464/07/sv01/fnd/AUS/fmt/png/Palermo-Lth-Unisex-Sneakers",
+      "in_stock": true,
+      "special_offer": "10% off with code BOOST10",
+      "discount": 10,
+      "warranty": "2 years",
+      "additional_details": "Limited stock available. Offer valid until end of month."
+    },
+    {
+      "id": "2",
+      "name": "New Balance",
+      "description": "Modern and stylish shoes with excellent cushioning and support.",
+      "price": 150,
+      "category": "Men",
+      "available_sizes": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "brand": "New-balance",
+      "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg",
+      "in_stock": true,
+      "special_offer": "Buy one get one 50% off",
+      "discount": 50,
+      "warranty": "1 year",
+      "additional_details": "Available in limited colors. Offer valid while supplies last."
+    },
+    {
+      "id": "3",
+      "name": "Nike X-3 Sh",
+      "description": "Retro-inspired shoes with a comfortable fit and bold design.",
+      "price": 115,
+      "category": "Men",
+      "available_sizes": [
+        "9",
+        "10",
+        "11"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png",
+      "in_stock": false,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Out of stock. Expected restock in two weeks."
+    },
+    {
+      "id": "4",
+      "name": "Adidas Clasiic",
+      "description": "Classic design with a timeless look and comfortable fit.",
+      "price": 90,
+      "category": "Men",
+      "available_sizes": [
+        "8",
+        "9"
+      ],
+      "brand": "Reebok",
+      "image_url": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/fcf43637c2694ae197a1ab1487a0e8a4_9366/Duramo_RC_Shoes_Green_IE7991_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "15% off on your first purchase",
+      "discount": 15,
+      "warranty": "6 months",
+      "additional_details": "Available in various colors and sizes."
+    },
+    {
+      "id": "5",
+      "name": "New Balance 990v5",
+      "description": "Premium materials and craftsmanship for optimal comfort.",
+      "price": 175,
+      "category": "Men",
+      "available_sizes": [
+        "9",
+        "10",
+        "11"
+      ],
+      "brand": "New Balance",
+      "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-017.jpg",
+      "in_stock": true,
+      "special_offer": "20% off for a limited time",
+      "discount": 20,
+      "warranty": "2 years",
+      "additional_details": "Special offer ends soon. Free shipping included."
+    },
+    {
+      "id": "6",
+      "name": "Nike Air Force 1",
+      "description": "Iconic design with superior comfort and durability.",
+      "price": 100,
+      "category": "Men",
+      "available_sizes": [
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Nike",
+      "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Regular stock available."
+    },
+    {
+      "id": "7",
+      "name": "Adidas Superstar",
+      "description": "Classic sneakers with a modern twist for everyday wear.",
+      "price": 85,
+      "category": "Men",
+      "available_sizes": [
+        "5",
+        "6",
+        "7"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6c3cc4a0-2bf4-4a7c-a2ba-c83875642bc5/NIKE+CORTEZ+TXT.png",
+      "in_stock": false,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Out of stock. Check back soon."
+    },
+    {
+      "id": "8",
+      "name": "Puma Clyde",
+      "description": "Stylish and comfortable sneakers for everyday wear.",
+      "price": 95,
+      "category": "Men",
+      "available_sizes": [
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Puma",
+      "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/0029ebe4-0ea3-4d8b-9e0d-b13ffa466165/NIKE+SB+ZOOM+BLAZER+MID.png",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Available in all sizes."
+    },
+    {
+      "id": "9",
+      "name": "Reebok Zig Kinetica",
+      "description": "High-performance shoes with a unique design and excellent cushioning.",
+      "price": 120,
+      "category": "Men",
+      "available_sizes": [
+        "6",
+        "7"
+      ],
+      "brand": "Reebok",
+      "image_url": "https://nb.scene7.com/is/image/NB/u9060eca_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880",
+      "in_stock": true,
+      "special_offer": "10% off for members",
+      "discount": 10,
+      "warranty": "1 year",
+      "additional_details": "Limited edition. Membership required for discount."
+    },
+    {
+      "id": "10",
+      "name": "New Balance Fresh Foam 1080v10",
+      "description": "Comfortable and cushioned running shoes with advanced technology.",
+      "price": 150,
+      "category": "Men",
+      "available_sizes": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "brand": "New Balance",
+      "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d7a7be55e6c94448a3181716f838fa22_9366/4DFWD_3_Running_Shoes_Grey_IG8980_HM1.jpg",
+      "in_stock": true,
+      "special_offer": "Buy two get 30% off",
+      "discount": 30,
+      "warranty": "2 years",
+      "additional_details": "Extended warranty included. Offer valid until end of month."
+    },
+    {
+      "id": "11",
+      "name": "Adidas NMD",
+      "description": "Sleek and stylish sneakers with a comfortable fit for any occasion.",
+      "price": 160,
+      "category": "Men",
+      "available_sizes": [
+        "8",
+        "9",
+        "10"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/62aabd93a80240b1afbdb51b65076aab_9366/Forum_Low_Shoes_Blue_IG3784_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "15% off with code NMD15",
+      "discount": 15,
+      "warranty": "1 year",
+      "additional_details": "Offer valid while supplies last. Free returns."
+    },
+    {
+      "id": "12",
+      "name": "Nike React Infinity Run",
+      "description": "Innovative running shoes with exceptional cushioning and support.",
+      "price": 170,
+      "category": "Women",
+      "available_sizes": [
+        "9",
+        "10",
+        "11"
+      ],
+      "brand": "Nike",
+      "image_url": "https://s.alicdn.com/@sc04/kf/Hae6fd6ba77cb49f3be8c884928ca847fR.jpg",
+      "in_stock": true,
+      "special_offer": "10% off on orders over $150",
+      "discount": 10,
+      "warranty": "1 year",
+      "additional_details": "Free shipping on all orders. Limited stock."
+    },
+    {
+      "id": "13",
+      "name": "Puma Basket Classic",
+      "description": "Vintage-inspired sneakers with a modern twist and superior comfort.",
+      "price": 100,
+      "category": "Women",
+      "available_sizes": [
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Puma",
+      "image_url": "https://s.alicdn.com/@sc04/kf/H099893a17cbd40358e75437d4e652d3cD.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "6 months",
+      "additional_details": "Classic color options available. Regular stock."
+    },
+    {
+      "id": "16",
+      "name": "New Adidas 574",
+      "description": "Timeless sneakers with premium materials and a comfortable fit.",
+      "price": 130,
+      "category": "Kids",
+      "available_sizes": [
+        "3",
+        "4"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c8aba848adba4eeebf89ae2e00ba47dd_9366/Grand_Court_2.0_Shoes_Kids_White_GW6521_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Out of stock. Check back soon."
+    },
+    {
+      "id": "17",
+      "name": "Nike React Infinity Run Flyknit",
+      "description": "High-performance running shoes with React foam for maximum comfort.",
+      "price": 160,
+      "category": "Running",
+      "available_sizes": [
+        "8",
+        "9",
+        "10"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-665455a5-45de-40fb-945f-c1852b82400d/react-infinity-run-flyknit-mens-running-shoe-zX42Nc.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Only a few left in stock."
+    },
+    {
+      "id": "18",
+      "name": "Nike React Miler",
+      "description": "Durable running shoes designed for long-distance comfort.",
+      "price": 130,
+      "category": "Running",
+      "available_sizes": [
+        "8",
+        "9",
+        "10"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Limited stock available."
+    },
+    {
+      "id": "19",
+      "name": "Nike Air Zoom Pegasus 37",
+      "description": "Iconic running shoes with Zoom Air cushioning for a responsive feel.",
+      "price": 120,
+      "category": "Running",
+      "available_sizes": [
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-33b0a0a5-c171-46cc-ad20-04a768703e47/air-zoom-pegasus-37-womens-running-shoe-Jl0bDf.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Available in multiple sizes."
+    },
+    {
+      "id": "20",
+      "name": "Nike Joyride Run Flyknit",
+      "description": "Running shoes with Joyride cushioning for an ultra-comfortable run.",
+      "price": 180,
+      "category": "Running",
+      "available_sizes": [
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/99a7d3cb-e40c-4474-91c2-0f2e6d231fd2/joyride-run-flyknit-womens-running-shoe-HcfnJd.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Only a few pairs left."
+    },
+    {
+      "id": "21",
+      "name": "Nike Mercurial Vapor 13 Elite FG",
+      "description": "High-performance football boots designed for speed and agility.",
+      "price": 250,
+      "category": "Football",
+      "available_sizes": [
+        "7",
+        "8",
+        "9"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "High demand. Limited stock."
+    },
+    {
+      "id": "22",
+      "name": "Nike Phantom Vision Elite Dynamic Fit FG",
+      "description": "Advanced football boots with dynamic fit for a secure feel.",
+      "price": 150,
+      "category": "Football",
+      "available_sizes": [
+        "7",
+        "8",
+        "9"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/s1amp7uosrn0nqpsxeue/phantom-vision-elite-dynamic-fit-fg-firm-ground-soccer-cleat-19Kv1V.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Limited sizes available."
+    },
+    {
+      "id": "23",
+      "name": "Nike Phantom Venom Academy FG",
+      "description": "Football boots designed for precision and control on the pitch.",
+      "price": 80,
+      "category": "Football",
+      "available_sizes": [
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/whegph8z9ornhxklc8rp/phantom-venom-academy-fg-firm-ground-soccer-cleat-6JVNll.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Available in various sizes."
+    },
+    {
+      "id": "24",
+      "name": "Nike Mercurial Vapor 13 Elite Tech Craft FG",
+      "description": "Premium football boots with a tech-crafted design for elite performance.",
+      "price": 145,
+      "category": "Football",
+      "available_sizes": [
+        "7",
+        "8",
+        "9"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/vhbwnkor8sxt8qtecgia/mercurial-vapor-13-elite-tech-craft-fg-firm-ground-soccer-cleat-l38JPj.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Limited availability."
+    },
+    {
+      "id": "25",
+      "name": "Nike Mercurial Superfly 7 Pro MDS FG",
+      "description": "High-performance football boots designed for maximum speed and control.",
+      "price": 137,
+      "category": "Football",
+      "available_sizes": [
+        "7",
+        "8",
+        "9"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-a52a8aec-22dc-4982-961b-75c5f4c72805/mercurial-superfly-7-pro-mds-fg-firm-ground-soccer-cleat-mhcpdN.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Only a few left in stock."
+    },
+    {
+      "id": "26",
+      "name": "Nike Air Force 1",
+      "description": "Classic sneakers with timeless design and comfort for kids.",
+      "price": 90,
+      "category": "Casual",
+      "available_sizes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "brand": "Nike",
+      "image_url": "https://image.goat.com/attachments/product_template_pictures/images/008/654/900/original/52015_00.png.png",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Available in multiple sizes."
+    },
+    {
+      "id": "27",
+      "name": "X_PLR",
+      "description": "Versatile and comfortable casual sneakers with a sleek design.",
+      "price": 65,
+      "category": "Casual",
+      "available_sizes": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/a36518227134495da766ab9d01772fa2_9366/X_PLR_Shoes_Red_FY9063_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Available in multiple sizes. Limited stock."
+    },
+    {
+      "id": "28",
+      "name": "Stan Smith",
+      "description": "Classic white sneakers with a minimalist design for everyday wear.",
+      "price": 55,
+      "category": "Casual",
+      "available_sizes": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/d0720712d81e42b1b30fa80800826447_9366/Stan_Smith_Shoes_White_M20607_M20607_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Only a few sizes left in stock."
+    },
+    {
+      "id": "29",
+      "name": "NMD_R1",
+      "description": "High-performance running shoes with boost cushioning for a comfortable ride.",
+      "price": 120,
+      "category": "Running",
+      "available_sizes": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/99ca762cb9054caf82fbabc500fd146e_9366/NMD_R1_Shoes_Blue_FY9392_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Limited sizes available. Order soon."
+    },
+    {
+      "id": "30",
+      "name": "NMD_R1 Flash Red",
+      "description": "Bold red sneakers with boost cushioning and a sleek, modern design.",
+      "price": 140,
+      "category": "Casual",
+      "available_sizes": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/90f85768e3894aeaab67aba0014a3379_9366/NMD_R1_Shoes_Red_FY9389_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "High demand. Limited stock."
+    },
+    {
+      "id": "31",
+      "name": "Superstar",
+      "description": "Iconic white sneakers with a classic shell toe design.",
+      "price": 90,
+      "category": "Casual",
+      "available_sizes": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/12365dbc7c424288b7cdab4900dc7099_9366/Superstar_Shoes_White_FW3553_FW3553_01_standard.jpg",
+      "in_stock": true,
+      "special_offer": "None",
+      "discount": 0,
+      "warranty": "1 year",
+      "additional_details": "Popular model. Limited availability."
+    },
+    {
+      "id": "1222",
+      "name": "fadf",
+      "description": "Modern and stylish shoes with excellent cushioning and support.",
+      "price": 333,
+      "category": "Men",
+      "available_sizes": [
+        "2",
+        "3",
+        "2"
+      ],
+      "brand": "Adidas",
+      "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5bbf68d51e03420c9b28bf1c7c167d8b_9366/WALKANEW_SHOES_Blue_IQ9188_01_standard.jpg",
+      "in_stock": "yes",
+      "special_offer": "10% offer",
+      "discount": "10%",
+      "warranty": "2 year",
+      "additional_details": "The best Nike shoes for your feet, according to a podiatrist"
+    },
+    {
+      "id": "422",
+      "name": "nike air",
+      "description": "The best Adidas shoes The best Nike shoes",
+      "price": 200,
+      "category": "Men",
+      "available_sizes": [
+        "5",
+        "6",
+        "7"
+      ],
+      "brand": "Nike",
+      "image_url": "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2023_17/1989442/230428-nike-vl-2x1.jpg",
+      "in_stock": "yes",
+      "special_offer": "10% offer",
+      "discount": "10%",
+      "warranty": "2 year",
+      "additional_details": "The best Nike shoes for your feet, according to a podiatrist"
+    },
+    {
+      "id": "2123123",
+      "name": "NIke",
+      "description": "The best Nike shoes The best Nike shoes",
+      "price": 399,
+      "category": "Men",
+      "available_sizes": [
+        "5",
+        "6",
+        "7"
+      ],
+      "brand": "Nike",
+      "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5a38f341-a2ab-4802-acee-48a886b877ea/NIKE+SB+ZOOM+POGO+PLUS.png",
+      "in_stock": "yes",
+      "special_offer": "10% offer",
+      "discount": "40% ",
+      "warranty": "2 year",
+      "additional_details": "The best Nike shoes for your feet, according to a podiatrist"
+    }
+  ]
+}
