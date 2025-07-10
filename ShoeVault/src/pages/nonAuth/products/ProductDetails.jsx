@@ -13,6 +13,7 @@ function ProductDetails() {
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0,0)
     async function fetchProduct() {
       try {
         const response = await fetch(`https://shoecart-4ug1.onrender.com/products/${id}`);

@@ -13,7 +13,7 @@ function Landing() {
   const [currentBanner, setCurrentBanner] = useState(0);
 
   const bannerImages = [
-    "https://github.com/salmanfaris22/E-commerce/blob/main/src/Assets/mainkeBRand.jpg?raw=true",
+    "https://i.pinimg.com/1200x/17/55/1d/17551d7fb79e01ee35caf6fb6e92eb83.jpg",
     "https://i.pinimg.com/1200x/a0/0a/39/a00a3996dd716284d5cae1eacb0761f4.jpg",
     "https://i.pinimg.com/1200x/2a/b5/91/2ab5915b8d216b598c584f9a484bcee9.jpg",
   ];
