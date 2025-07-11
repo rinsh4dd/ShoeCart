@@ -7,7 +7,7 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  const [cartLength, setCartLength] = useState(0);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -15,6 +15,17 @@ export default function AuthProvider({ children }) {
     }
     setLoading(false);
   }, []);
+
+useEffect(() => {
+    if (user) {
+      fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCartLength(data.cart ? data.cart.length : 0);
+        })
+        .catch((err) => console.log("Failed to load cart:", err));
+   }
+},[user]);
 
   useEffect(() => {
     if (user) {
@@ -32,8 +43,8 @@ export default function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
-      {!loading && children} {/* ✅ Wait until loading finishes */}
+    <AuthContext.Provider value={{ user, login, register, logout, loading,setCartLength,cartLength }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 }

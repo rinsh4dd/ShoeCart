@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../common/context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Cart() {
   const [cart, setCart] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, setCartLength } = useContext(AuthContext);
 
-  // ✅ Redirect to login only after loading is finished
   useEffect(() => {
     if (!loading && !user?.id) {
       navigate("/login", { state: { from: "/cart" } });
     }
   }, [loading, user, navigate]);
 
-  // ✅ Fetch cart only after user is ready
   useEffect(() => {
     const fetchCartData = async () => {
       if (!loading && user?.id) {
@@ -26,6 +26,7 @@ function Cart() {
           if (!response.ok) throw new Error("Failed to fetch cart");
           const data = await response.json();
           setCart(data.cart || []);
+          setCartLength(data.cart?.length || 0);
         } catch (error) {
           console.error("Error fetching cart:", error);
         } finally {
@@ -35,7 +36,7 @@ function Cart() {
     };
 
     fetchCartData();
-  }, [loading, user]);
+  }, [loading, user, setCartLength]);
 
   const updateCartInDB = async (updatedCart) => {
     setIsUpdating(true);
@@ -49,6 +50,7 @@ function Cart() {
       if (!response.ok) throw new Error("Failed to update cart");
 
       setCart(updatedCart);
+      setCartLength(updatedCart.length);
     } catch (error) {
       console.error("Error updating cart:", error);
     } finally {
@@ -56,10 +58,11 @@ function Cart() {
     }
   };
 
-  const handleRemove = (index) => {
+  const handleRemove = async (index) => {
     const updatedCart = [...cart];
     updatedCart.splice(index, 1);
-    updateCartInDB(updatedCart);
+    await updateCartInDB(updatedCart);
+    toast.success("Item removed from cart");
   };
 
   const handleQuantityChange = (index, newQuantity) => {
@@ -80,8 +83,7 @@ function Cart() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
         <div className="max-w-md text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 mx-auto"/>
-         
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 mx-auto" />
           <h2 className="text-xl font-medium text-gray-800">Loading your cart...</h2>
         </div>
       </div>
@@ -108,9 +110,9 @@ function Cart() {
     );
   }
 
-  // 🛒 Main Cart UI (same as your original - untouched)
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <ToastContainer />
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Your Cart</h1>
@@ -118,7 +120,6 @@ function Cart() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Cart Items */}
           <div className="lg:w-2/3">
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="divide-y divide-gray-200">
@@ -129,7 +130,6 @@ function Cart() {
                         src={item.image_url} 
                         alt={item.name} 
                         className="w-24 h-24 rounded-md object-cover border border-gray-200"
-                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -145,7 +145,7 @@ function Cart() {
                           <button 
                             onClick={() => handleQuantityChange(index, item.quantity - 1)}
                             disabled={isUpdating || item.quantity <= 1}
-                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50"
                           >
                             −
                           </button>
@@ -155,7 +155,7 @@ function Cart() {
                           <button 
                             onClick={() => handleQuantityChange(index, item.quantity + 1)}
                             disabled={isUpdating}
-                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50"
                           >
                             +
                           </button>
@@ -163,7 +163,7 @@ function Cart() {
                         <button 
                           onClick={() => handleRemove(index)}
                           disabled={isUpdating}
-                          className="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
                         >
                           Remove
                         </button>
@@ -198,13 +198,11 @@ function Cart() {
               <button 
                 onClick={handleCheckout}
                 disabled={isUpdating || isLoading}
-                className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700"
               >
                 {isUpdating ? (
                   <>
-                    <svg className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white-600 mx-auto"  fill="none" viewBox="0 0 24 24">
-                      <path className="opacity-100"></path>
-                    </svg>
+                    <svg className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white mx-2" viewBox="0 0 24 24"></svg>
                     Processing...
                   </>
                 ) : (
@@ -212,15 +210,14 @@ function Cart() {
                 )}
               </button>
 
-              <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
+              <div className="mt-6 text-center text-sm text-gray-500">
                 <p>
-                  or{' '}
-                  <button 
-                    type="button" 
+                  or{" "}
+                  <button
                     onClick={() => navigate("/")}
-                    className="text-indigo-600 font-medium hover:text-indigo-500 transition-colors duration-200"
+                    className="text-indigo-600 font-medium hover:text-indigo-500"
                   >
-                    Continue Shopping<span aria-hidden="true"> &rarr;</span>
+                    Continue Shopping →
                   </button>
                 </p>
               </div>

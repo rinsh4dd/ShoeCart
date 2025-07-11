@@ -1,7 +1,7 @@
 import ProductImage from "../Images/ProductImage";
 import BuyNowOverlay from "../button/BuyNowOverlay";
 
-function Card({ image, name, special_offer, price }) {
+function Card({ id, image, name, special_offer, price }) {
   return (
     <div
       data-aos="fade-down"
@@ -27,7 +27,13 @@ function Card({ image, name, special_offer, price }) {
           alt={name}
           className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
         />
-        <BuyNowOverlay className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <BuyNowOverlay
+          id={id}
+          image={image}
+          name={name}
+          price={price}
+          className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        />
       </div>
 
       {/* Product Info */}

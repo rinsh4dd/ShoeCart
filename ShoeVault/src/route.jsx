@@ -20,11 +20,20 @@ import OrderConfirmation from "./pages/nonAuth/order/OrderConfirmation";
 import OrdersPage from "./pages/nonAuth/order/OrdersPage";
 import OrderDetails from "./pages/nonAuth/order/OrderDetails";
 import Wishlist from "./pages/nonAuth/wishlist/WishList";
+import LoginAsAdmin from "./admin/LoginAsAdmin";
+import AdminDashboard from "./admin/AdminDashboard";
+import ManageUsers from "./admin/ManageUsers";
+import ManageProducts from "./admin/ManageProducts";
+import ManageOrders from "./admin/ManageOrders";
 
 function AppRoutesWrapper() {
   const location = useLocation();
-  const hideNavbarRoutes = ["/login", "/signup"];
-  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+
+  // Hide navbar if current path starts with "/admin", or is login/signup
+  const shouldHideNavbar =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
 
   return (
     <div className="w-full min-h-screen bg-white">
@@ -43,12 +52,20 @@ function AppRoutesWrapper() {
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/orders/:orderId" element={<OrderDetails />} />
-          <Route path="/wishlist" element={<Wishlist/>} />
+          <Route path="/wishlist" element={<Wishlist />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<LoginAsAdmin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<ManageUsers />} />
+          <Route path="/admin/products" element={<ManageProducts />} />
+          <Route path="/admin/orders" element={<ManageOrders />} />
         </Routes>
       </div>
     </div>
   );
 }
+
 
 function UserRouter() {
   return (
@@ -59,5 +76,4 @@ function UserRouter() {
     </Router>
   );
 }
-
 export default UserRouter;

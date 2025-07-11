@@ -30,29 +30,39 @@ function LoginPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+   const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-    try {
-      const { data } = await axios.get(
-        `https://shoecart-4ug1.onrender.com/users?email=${form.email}&password=${form.password}`
-      );
+  try {
+    const { data } = await axios.get(
+      `https://shoecart-4ug1.onrender.com/users?email=${form.email}&password=${form.password}`
+    );
 
-      if (data.length > 0) {
-        login(data[0]); // ✅ Trigger context update
+    if (data.length > 0) {
+      const loggedInUser = data[0];
+
+      if (loggedInUser.role === "admin") {
+        // ✅ Redirect admin directly — do NOT save to AuthContext
+        toast.success("Welcome Admin!");
+        setTimeout(() => navigate("/admin/dashboard", { replace: true }), 1000);
+      } else {
+        // ✅ Normal user flow
+        login(loggedInUser); // saves to context + localStorage
         toast.success("Login successful! Redirecting...");
         setTimeout(() => navigate("/", { replace: true }), 1000);
-      } else {
-        toast.error("Invalid email or password");
       }
-    } catch (error) {
-      toast.error("Login failed. Please try again.");
-      console.error("Login error:", error);
-    } finally {
-      setIsLoading(false);
+    } else {
+      toast.error("Invalid email or password");
     }
-  };
+  } catch (error) {
+    toast.error("Login failed. Please try again.");
+    console.error("Login error:", error);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center px-4 py-12">

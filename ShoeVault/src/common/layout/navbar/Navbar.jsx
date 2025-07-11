@@ -12,10 +12,10 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { user, loading, logout } = useContext(AuthContext);
+  const { user, loading, setCartLength, cartLength, logout } =
+    useContext(AuthContext);
   if (loading) return null;
 
-  // Check active paths
   const isCartActive = location.pathname === "/cart";
   const isWishlistActive = location.pathname === "/wishlist";
   const isProfileActive = location.pathname.startsWith("/profile");
@@ -67,6 +67,7 @@ function Navbar() {
   };
 
   const handleLogout = () => {
+    setCartLength(0);
     Swal.fire({
       title: "Confirm Logout",
       text: "Are you sure you want to logout?",
@@ -129,18 +130,30 @@ function Navbar() {
             <CiShoppingCart
               onClick={handleCartClick}
               className={`cursor-pointer transition duration-200 ${
-                isCartActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+                isCartActive
+                  ? "text-red-500"
+                  : "hover:text-red-500 text-gray-700"
               }`}
             />
+            {cartLength > 0 && (
+              <span className="absolute -top-2 left-3 bg-red-500 text-white text-[13px] px-[7px] py-[1px] rounded-full">
+                {cartLength}
+              </span>
+            )}
+
             <CiHeart
               onClick={handleWishlistClick}
               className={`cursor-pointer transition duration-200 ${
-                isWishlistActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+                isWishlistActive
+                  ? "text-red-500"
+                  : "hover:text-red-500 text-gray-700"
               }`}
             />
             <div
               className={`flex items-center gap-1 cursor-pointer transition duration-200 ${
-                isProfileActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+                isProfileActive
+                  ? "text-red-500"
+                  : "hover:text-red-500 text-gray-700"
               }`}
               onClick={handleProfileClick}
             >
@@ -219,7 +232,9 @@ function Navbar() {
                   setIsOpen(false);
                 }}
                 className={`cursor-pointer transition duration-200 ${
-                  isCartActive ? "text-red-500" : "hover:text-red-500 text-gray-700"
+                  isCartActive
+                    ? "text-red-500"
+                    : "hover:text-red-500 text-gray-700"
                 }`}
               />
               <CiHeart
