@@ -1,8 +1,16 @@
 {
   "users": [
     {
-      "id": "f641",
-      "name": "Rinshad",
+      "id": "5",
+      "name": "Admin",
+      "email": "admin@shoecart.com",
+      "password": "Admin123@",
+      "role": "admin",
+      "isBlocked": false
+    },
+    {
+      "id": "1b5a",
+      "name": "Mohammed Rinshad",
       "email": "rinshadcontacts@gmail.com",
       "password": "Rinshad123@!",
       "role": "user",
@@ -10,148 +18,21 @@
       "cart": [],
       "orders": [
         {
-          "id": 1751915476568,
+          "id": 1752489508214,
           "items": [
             {
-              "id": "3",
-              "name": "Nike X-3 Sh",
-              "price": 115,
-              "size": "S",
-              "quantity": 1,
-              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
-            }
-          ],
-          "totalAmount": 115,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "createdAt": "2025-07-07T19:11:16.568Z"
-        },
-        {
-          "id": 1751915654762,
-          "items": [
-            {
-              "id": "3",
-              "name": "Nike X-3 Sh",
-              "price": 115,
-              "size": "M",
-              "quantity": 1,
-              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
-            }
-          ],
-          "totalAmount": 115,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "createdAt": "2025-07-07T19:14:14.762Z"
-        },
-        {
-          "id": 1751915713674,
-          "items": [
-            {
-              "id": "10",
-              "name": "New Balance Fresh Foam 1080v10",
-              "price": 150,
-              "size": "XL",
-              "quantity": 1,
-              "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d7a7be55e6c94448a3181716f838fa22_9366/4DFWD_3_Running_Shoes_Grey_IG8980_HM1.jpg"
-            }
-          ],
-          "totalAmount": 150,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "createdAt": "2025-07-07T19:15:13.674Z"
-        },
-        {
-          "id": 1751915755486,
-          "items": [
-            {
-              "id": "10",
-              "name": "New Balance Fresh Foam 1080v10",
-              "price": 150,
-              "size": "M",
-              "quantity": 1,
-              "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d7a7be55e6c94448a3181716f838fa22_9366/4DFWD_3_Running_Shoes_Grey_IG8980_HM1.jpg"
-            }
-          ],
-          "totalAmount": 150,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "createdAt": "2025-07-07T19:15:55.486Z"
-        },
-        {
-          "id": 1751915957636,
-          "items": [
-            {
-              "id": "6",
-              "name": "Nike Air Force 1",
-              "price": 100,
-              "size": "XL",
-              "quantity": 1,
-              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
-            }
-          ],
-          "totalAmount": 100,
-          "paymentStatus": "completed",
-          "orderStatus": "paid",
-          "createdAt": "2025-07-07T19:19:17.636Z"
-        },
-        {
-          "id": 1751916588876,
-          "items": [
-            {
-              "id": "7",
-              "name": "Adidas Superstar",
-              "price": 85,
-              "size": "S",
+              "id": "12",
+              "name": "Nike React Infinity Run",
+              "price": 170,
+              "size": "10",
               "quantity": 2,
-              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6c3cc4a0-2bf4-4a7c-a2ba-c83875642bc5/NIKE+CORTEZ+TXT.png"
+              "image_url": "https://s.alicdn.com/@sc04/kf/Hae6fd6ba77cb49f3be8c884928ca847fR.jpg"
             }
           ],
-          "totalAmount": 170,
+          "totalAmount": 340,
           "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "createdAt": "2025-07-07T19:29:48.876Z"
-        },
-        {
-          "id": 1751917302374,
-          "items": [
-            {
-              "id": "3",
-              "name": "Nike X-3 Sh",
-              "price": 115,
-              "size": "M",
-              "quantity": 1,
-              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
-            },
-            {
-              "id": "9",
-              "name": "Reebok Zig Kinetica",
-              "price": 120,
-              "size": "S",
-              "quantity": 1,
-              "image_url": "https://nb.scene7.com/is/image/NB/u9060eca_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880"
-            }
-          ],
-          "totalAmount": 235,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "createdAt": "2025-07-07T19:41:42.374Z"
-        },
-        {
-          "id": 1751917436797,
-          "items": [
-            {
-              "id": "3",
-              "name": "Nike X-3 Sh",
-              "price": 115,
-              "size": "S",
-              "quantity": 1,
-              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
-            }
-          ],
-          "totalAmount": 115,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "paymentMethod": "VISA ****8888",
+          "orderStatus": "delivered",
+          "paymentMethod": "VISA ****5464",
           "billingAddress": {
             "street": "chirakkal House Kallingal klpy",
             "city": "tirur",
@@ -159,11 +40,141 @@
             "zip": "676551",
             "country": "India"
           },
-          "createdAt": "2025-07-07T19:43:56.797Z"
+          "createdAt": "2025-07-14T10:38:28.214Z",
+          "deliveryStatus": "delivered"
+        },
+        {
+          "id": 1752490146868,
+          "items": [
+            {
+              "id": "4",
+              "name": "Adidas Clasiic",
+              "price": 90,
+              "size": "8",
+              "quantity": 2,
+              "image_url": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/fcf43637c2694ae197a1ab1487a0e8a4_9366/Duramo_RC_Shoes_Green_IE7991_01_standard.jpg"
+            }
+          ],
+          "totalAmount": 180,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "VISA ****1212",
+          "billingAddress": {
+            "street": "chirakkal House Kallingal klpy",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-12T10:49:06.868Z"
+        },
+        {
+          "id": 1752490660842,
+          "items": [
+            {
+              "id": "6",
+              "name": "Nike Air Force 1",
+              "price": 100,
+              "size": "7",
+              "quantity": 2,
+              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
+            }
+          ],
+          "totalAmount": 200,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "VISA ****7654",
+          "billingAddress": {
+            "street": "chirakkal House Kallingal klpy",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-12T10:57:40.842Z"
+        },
+        {
+          "id": 1752493485923,
+          "items": [
+            {
+              "id": "18",
+              "name": "Nike React Miler",
+              "price": 130,
+              "size": "9",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg"
+            }
+          ],
+          "totalAmount": 130,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "VISA ****4654",
+          "billingAddress": {
+            "street": "chirakkal House Kallingal klpy",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-12T11:44:45.923Z"
+        },
+        {
+          "id": 1752494162150,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "10",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 115,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "VISA ****4543",
+          "billingAddress": {
+            "street": "chirakkal House Kallingal klpy",
+            "city": "tirur",
+            "state": "kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-14T11:56:02.150Z"
         }
       ],
-      "wishlist": [],
-      "created_at": "2025-07-07T11:11:56.254Z",
+      "wishlist": [
+        {
+          "id": "4",
+          "name": "Adidas Clasiic",
+          "price": 90,
+          "image_url": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/fcf43637c2694ae197a1ab1487a0e8a4_9366/Duramo_RC_Shoes_Green_IE7991_01_standard.jpg",
+          "brand": "Reebok"
+        },
+        {
+          "id": "20",
+          "name": "Nike Joyride Run Flyknit",
+          "price": 180,
+          "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/99a7d3cb-e40c-4474-91c2-0f2e6d231fd2/joyride-run-flyknit-womens-running-shoe-HcfnJd.jpg",
+          "brand": "Nike"
+        },
+        {
+          "id": "21",
+          "name": "Nike Mercurial Vapor 13 Elite FG",
+          "price": 250,
+          "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg",
+          "brand": "Nike"
+        },
+        {
+          "id": "19",
+          "name": "Nike Air Zoom Pegasus 37",
+          "price": 120,
+          "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-33b0a0a5-c171-46cc-ad20-04a768703e47/air-zoom-pegasus-37-womens-running-shoe-Jl0bDf.jpg",
+          "brand": "Nike"
+        }
+      ],
+      "created_at": "2025-07-11T09:59:27.131Z",
       "shippingAddress": {
         "street": "chirakkal House Kallingal klpy",
         "city": "tirur",
@@ -173,133 +184,433 @@
       }
     },
     {
-      "id": "5869",
-      "name": "zoombi",
-      "email": "zoombi@gmaiil.com",
-      "password": "Zoombi121!",
-      "role": "user",
-      "isBlock": false,
-      "cart": [
-        {
-          "id": "2",
-          "name": "New Balance",
-          "price": 150,
-          "size": "L",
-          "quantity": 1,
-          "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
-        },
-        {
-          "id": "7",
-          "name": "Adidas Superstar",
-          "price": 85,
-          "size": "XL",
-          "quantity": 1,
-          "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6c3cc4a0-2bf4-4a7c-a2ba-c83875642bc5/NIKE+CORTEZ+TXT.png"
-        }
-      ],
-      "orders": [],
-      "wishlist": [],
-      "created_at": "2025-07-07T11:22:42.309Z"
-    },
-    {
-      "id": "d8b1",
-      "name": "sulaiman",
-      "email": "sulu@gmail.com",
-      "password": "Sulu121!",
-      "role": "user",
-      "isBlock": false,
-      "cart": [
-        {
-          "id": "2",
-          "name": "New Balance",
-          "price": 150,
-          "size": "M",
-          "quantity": 1,
-          "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
-        },
-        {
-          "id": "3",
-          "name": "Nike X-3 Sh",
-          "price": 115,
-          "size": "L",
-          "quantity": 1,
-          "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
-        }
-      ],
-      "orders": [],
-      "wishlist": [],
-      "created_at": "2025-07-07T12:54:37.683Z"
-    },
-    {
-      "id": "d5e0",
-      "name": "Mohammed Rinshad",
-      "email": "rinsh4dd@gmail.con",
-      "password": "Rinshad321!",
+      "id": "ee3a",
+      "name": "muhammed anshif",
+      "email": "anshif@gmail.com",
+      "password": "Anshif987@",
       "role": "user",
       "isBlock": false,
       "cart": [],
       "orders": [
         {
-          "id": 1751918558510,
+          "id": 1752490965515,
           "items": [
             {
-              "id": "6",
-              "name": "Nike Air Force 1",
-              "price": 100,
-              "size": "S",
+              "id": "2",
+              "name": "New Balance",
+              "price": 150,
+              "size": "7",
               "quantity": 1,
-              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
+              "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
             }
           ],
-          "totalAmount": 100,
+          "totalAmount": 150,
           "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "paymentMethod": "VISA ****8907",
+          "orderStatus": "delivered",
+          "paymentMethod": "VISA ****2624",
           "billingAddress": {
-            "street": "Rinshad",
+            "street": "chirakkal House Kallingal klpy",
             "city": "tirur",
             "state": "kerala",
             "zip": "676551",
             "country": "India"
           },
-          "createdAt": "2025-07-07T20:02:38.510Z"
-        },
-        {
-          "id": 1751920437888,
-          "items": [
-            {
-              "id": "6",
-              "name": "Nike Air Force 1",
-              "price": 100,
-              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg",
-              "brand": "Nike",
-              "quantity": 1,
-              "size": "M"
-            }
-          ],
-          "totalAmount": 100,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "paymentMethod": "VISA ****7890",
-          "billingAddress": {
-            "street": "Rinshad",
-            "city": "tirur",
-            "state": "kerala",
-            "zip": "676551",
-            "country": "India"
-          },
-          "createdAt": "2025-07-07T20:33:57.888Z"
+          "createdAt": "2025-07-13T11:02:45.515Z"
         }
       ],
       "wishlist": [],
-      "created_at": "2025-07-07T19:59:04.474Z",
+      "created_at": "2025-07-14T11:00:08.230Z",
       "shippingAddress": {
-        "street": "Rinshad",
+        "street": "chirakkal House Kallingal klpy",
         "city": "tirur",
         "state": "kerala",
         "zip": "676551",
         "country": "India"
       }
+    },
+    {
+      "id": "fee4",
+      "name": "fahis",
+      "email": "fahis@gmail.com",
+      "password": "Fahis123@",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-06-14T11:46:10.481Z"
+    },
+    {
+      "id": "5e70",
+      "name": "John",
+      "email": "john@gmail.com",
+      "password": "John123@",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-14T11:46:44.540Z"
+    },
+    {
+      "id": "u001",
+      "name": "Arjun",
+      "email": "arjun123@gmail.com",
+      "password": "Arjun@123",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-14T10:20:30.000Z"
+    },
+    {
+      "id": "u002",
+      "name": "Neha",
+      "email": "neha.k@gmail.com",
+      "password": "Neha@456",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-13T14:15:10.000Z"
+    },
+    {
+      "id": "u003",
+      "name": "Riyas",
+      "email": "riyas.m@gmail.com",
+      "password": "Riyas#789",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-12T18:42:00.000Z"
+    },
+    {
+      "id": "u004",
+      "name": "Divya",
+      "email": "divya.joshi@gmail.com",
+      "password": "Divya@321",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-11T09:10:45.000Z"
+    },
+    {
+      "id": "u005",
+      "name": "Fahim",
+      "email": "fahim786@gmail.com",
+      "password": "Fahim@007",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-10T21:55:20.000Z"
+    },
+    {
+      "id": "u006",
+      "name": "Sneha",
+      "email": "sneha.das@gmail.com",
+      "password": "Sneha@999",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-06T15:10:00.000Z"
+    },
+    {
+      "id": "u007",
+      "name": "Naveen",
+      "email": "naveen.kumar@gmail.com",
+      "password": "Naveen@654",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-07T09:20:00.000Z"
+    },
+    {
+      "id": "u008",
+      "name": "Aisha",
+      "email": "aisha.b@gmail.com",
+      "password": "Aisha@111",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-08T08:00:00.000Z"
+    },
+    {
+      "id": "u009",
+      "name": "Irfan",
+      "email": "irfan.m@gmail.com",
+      "password": "Irfan@222",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-09T10:10:00.000Z"
+    },
+    {
+      "id": "u010",
+      "name": "Meera",
+      "email": "meera.v@gmail.com",
+      "password": "Meera@333",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-10T11:11:00.000Z"
+    },
+    {
+      "id": "u011",
+      "name": "Rohit",
+      "email": "rohit.s@gmail.com",
+      "password": "Rohit@101",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-11T12:12:00.000Z"
+    },
+    {
+      "id": "u012",
+      "name": "Pooja",
+      "email": "pooja.r@gmail.com",
+      "password": "Pooja@202",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-12T13:13:00.000Z"
+    },
+    {
+      "id": "u013",
+      "name": "Salman",
+      "email": "salman.a@gmail.com",
+      "password": "Salman@303",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-13T14:14:00.000Z"
+    },
+    {
+      "id": "u014",
+      "name": "Anu",
+      "email": "anu.r@gmail.com",
+      "password": "Anu@404",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-14T15:15:00.000Z"
+    },
+    {
+      "id": "u015",
+      "name": "Harish",
+      "email": "harish.k@gmail.com",
+      "password": "Harish@505",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-15T16:16:00.000Z"
+    },
+    {
+      "id": "u016",
+      "name": "Vidya",
+      "email": "vidya.n@gmail.com",
+      "password": "Vidya@606",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-16T17:17:00.000Z"
+    },
+    {
+      "id": "u017",
+      "name": "Ajay",
+      "email": "ajay.v@gmail.com",
+      "password": "Ajay@707",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-17T18:18:00.000Z"
+    },
+    {
+      "id": "u018",
+      "name": "Lakshmi",
+      "email": "lakshmi.r@gmail.com",
+      "password": "Lakshmi@808",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-18T19:19:00.000Z"
+    },
+    {
+      "id": "u019",
+      "name": "Vikram",
+      "email": "vikram.p@gmail.com",
+      "password": "Vikram@909",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-19T20:20:00.000Z"
+    },
+    {
+      "id": "u020",
+      "name": "Sara",
+      "email": "sara.b@gmail.com",
+      "password": "Sara@010",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-20T21:21:00.000Z"
+    },
+    {
+      "id": "u021",
+      "name": "Kiran",
+      "email": "kiran.s@gmail.com",
+      "password": "Kiran@121",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-21T10:00:00.000Z"
+    },
+    {
+      "id": "u022",
+      "name": "Asifa",
+      "email": "asifa.y@gmail.com",
+      "password": "Asifa@232",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-22T11:00:00.000Z"
+    },
+    {
+      "id": "u023",
+      "name": "Shyam",
+      "email": "shyam.l@gmail.com",
+      "password": "Shyam@343",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-23T12:00:00.000Z"
+    },
+    {
+      "id": "u024",
+      "name": "Anjali",
+      "email": "anjali.k@gmail.com",
+      "password": "Anjali@454",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-24T13:00:00.000Z"
+    },
+    {
+      "id": "u025",
+      "name": "Rahul",
+      "email": "rahul.s@gmail.com",
+      "password": "Rahul@565",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-25T14:00:00.000Z"
+    },
+    {
+      "id": "u026",
+      "name": "Zoya",
+      "email": "zoya.m@gmail.com",
+      "password": "Zoya@676",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-26T15:00:00.000Z"
+    },
+    {
+      "id": "u027",
+      "name": "Vishnu",
+      "email": "vishnu.k@gmail.com",
+      "password": "Vishnu@787",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-27T16:00:00.000Z"
+    },
+    {
+      "id": "u028",
+      "name": "Aarti",
+      "email": "aarti.z@gmail.com",
+      "password": "Aarti@898",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-28T17:00:00.000Z"
+    },
+    {
+      "id": "u029",
+      "name": "Farhan",
+      "email": "farhan.t@gmail.com",
+      "password": "Farhan@909",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-29T18:00:00.000Z"
+    },
+    {
+      "id": "u030",
+      "name": "Revathi",
+      "email": "revathi.r@gmail.com",
+      "password": "Revathi@000",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [],
+      "wishlist": [],
+      "created_at": "2025-07-30T19:00:00.000Z"
     }
   ],
   "products": [
@@ -356,7 +667,7 @@
       ],
       "brand": "Nike",
       "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png",
-      "in_stock": false,
+      "in_stock": true,
       "special_offer": "None",
       "discount": 0,
       "warranty": "1 year",

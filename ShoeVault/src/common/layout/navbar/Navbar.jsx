@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { CiShoppingCart, CiHeart, CiUser } from "react-icons/ci";
 import { IoLogoAmplify } from "react-icons/io5";
-
 import { HiMenu, HiX } from "react-icons/hi";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../common/context/AuthProvider";

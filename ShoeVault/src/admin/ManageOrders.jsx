@@ -229,7 +229,7 @@ function ManageOrders() {
       <Toaster position="top-right" />
 
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        📦 Order Management
+       Order Management
       </h1>
 
       {/* Order Stats Cards */}

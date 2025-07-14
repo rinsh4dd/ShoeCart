@@ -160,7 +160,7 @@ useEffect(() => {
                     <div className="flex items-center">
                       {getStatusBadge(order.orderStatus)}
                       <span className="ml-4 text-lg font-medium text-gray-900">
-                        ₹{order.totalAmount.toFixed(2)}
+                        ${order.totalAmount.toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -184,12 +184,12 @@ useEffect(() => {
                           Size: {item.size} | Qty: {item.quantity}
                         </p>
                         <p className="text-sm text-gray-500">
-                          ₹{item.price.toFixed(2)} each
+                          ${item.price.toFixed(2)} each
                         </p>
                       </div>
                       <div className="ml-4 text-right">
                         <p className="text-base font-medium text-gray-900">
-                          ₹{(item.price * item.quantity).toFixed(2)}
+                          ${(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
                     </div>
