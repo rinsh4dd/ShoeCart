@@ -94,7 +94,7 @@ function RegistrationPage() {
 
     try {
       const res = await axios.get(
-        `https://shoecart-4ug1.onrender.com/users?email=${formData.email}`
+        `http://localhost:3000/users?email=${formData.email}`
       );
       if (res.data.length > 0) {
         setErrors({ email: "This email is already registered" });
@@ -108,7 +108,7 @@ function RegistrationPage() {
         created_at: new Date().toISOString(),
       };
 
-      await axios.post("https://shoecart-4ug1.onrender.com/users", newUser);
+      await axios.post("http://localhost:3000/users", newUser);
       setSuccess(true);
       setFormData({ name: "", email: "", password: "" });
 

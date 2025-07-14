@@ -18,7 +18,7 @@ export default function AuthProvider({ children }) {
 
 useEffect(() => {
     if (user) {
-      fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`)
+      fetch(`http://localhost:3000/users/${user.id}`)
         .then((res) => res.json())
         .then((data) => {
           setCartLength(data.cart ? data.cart.length : 0);

@@ -30,39 +30,44 @@ function LoginPage() {
     return () => clearInterval(interval);
   }, []);
 
-   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
 
-  try {
-    const { data } = await axios.get(
-      `https://shoecart-4ug1.onrender.com/users?email=${form.email}&password=${form.password}`
-    );
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/users?email=${form.email}&password=${form.password}`
+      );
 
-    if (data.length > 0) {
-      const loggedInUser = data[0];
+      if (data.length > 0) {
+        const loggedInUser = data[0];
 
-      if (loggedInUser.role === "admin") {
-        // ✅ Redirect admin directly — do NOT save to AuthContext
-        toast.success("Welcome Admin!");
-        setTimeout(() => navigate("/admin/dashboard", { replace: true }), 1000);
+        if (loggedInUser.isBlocked) {
+          toast.error("Your account is blocked. Contact admin.");
+          return; // 🔥 prevent login flow from continuing
+        }
+
+        if (loggedInUser.role === "admin") {
+          toast.success("Welcome Admin!");
+          setTimeout(
+            () => navigate("/admin/dashboard", { replace: true }),
+            1000
+          );
+        } else {
+          login(loggedInUser); // save to context + localStorage
+          toast.success("Login successful! Redirecting...");
+          setTimeout(() => navigate("/", { replace: true }), 1000);
+        }
       } else {
-        // ✅ Normal user flow
-        login(loggedInUser); // saves to context + localStorage
-        toast.success("Login successful! Redirecting...");
-        setTimeout(() => navigate("/", { replace: true }), 1000);
+        toast.error("Invalid email or password");
       }
-    } else {
-      toast.error("Invalid email or password");
+    } catch (error) {
+      toast.error("Login failed. Please try again.");
+      console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    toast.error("Login failed. Please try again.");
-    console.error("Login error:", error);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center px-4 py-12">
@@ -143,9 +148,7 @@ function LoginPage() {
                 name="password"
                 autoComplete="current-password"
                 value={form.password}
-                onChange={(e) =>
-                  setForm({ ...form, password: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
                 className="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="••••••••"
                 required

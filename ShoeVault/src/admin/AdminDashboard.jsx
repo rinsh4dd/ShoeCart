@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { 
-  FaUsers, 
-  FaBoxOpen, 
-  FaClipboardList, 
+import {
+  FaUsers,
+  FaBoxOpen,
+  FaClipboardList,
   FaRupeeSign,
   FaArrowUp,
-  FaShoppingCart
+  FaShoppingCart,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
 import {
@@ -21,7 +22,7 @@ import {
   Tooltip,
   Legend,
   Filler,
-  ArcElement
+  ArcElement,
 } from "chart.js";
 import { motion } from "framer-motion";
 
@@ -41,21 +42,21 @@ ChartJS.register(
 
 function AdminDashboard() {
   const navigate = useNavigate();
-  const [stats, setStats] = useState({ 
-    users: 0, 
-    products: 0, 
-    orders: 0, 
+  const [stats, setStats] = useState({
+    users: 0,
+    products: 0,
+    orders: 0,
     revenue: 0,
     userGrowth: 0,
-    revenueGrowth: 0
+    revenueGrowth: 0,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [chartData, setChartData] = useState({ 
-    orders: [], 
-    revenue: [], 
+  const [chartData, setChartData] = useState({
+    orders: [],
+    revenue: [],
     statusDistribution: [],
-    labels: [] 
+    labels: [],
   });
 
   useEffect(() => {
@@ -63,27 +64,27 @@ function AdminDashboard() {
       try {
         setLoading(true);
         const [userRes, productRes] = await Promise.all([
-          axios.get("https://shoecart-4ug1.onrender.com/users"),
-          axios.get("https://shoecart-4ug1.onrender.com/products"),
+          axios.get("http://localhost:3000/users"),
+          axios.get("http://localhost:3000/products"),
         ]);
 
         const users = userRes.data;
         const products = productRes.data;
         let allOrders = [];
-        
+
         // Collect all orders and calculate status distribution
         const statusCounts = {
           pending: 0,
           shipped: 0,
           delivered: 0,
-          cancelled: 0
+          cancelled: 0,
         };
 
         users.forEach((user) => {
           if (Array.isArray(user.orders)) {
-            user.orders.forEach(order => {
+            user.orders.forEach((order) => {
               allOrders.push(order);
-              const status = order.deliveryStatus || 'pending';
+              const status = order.orderStatus || "pending";
               statusCounts[status]++;
             });
           }
@@ -109,13 +110,16 @@ function AdminDashboard() {
           return d.toISOString().split("T")[0];
         });
 
-        const ordersByDay = last7Days.map((day) =>
-          allOrders.filter((o) => o.createdAt?.includes(day)).length
+        const ordersByDay = last7Days.map(
+          (day) => allOrders.filter((o) => o.createdAt?.includes(day)).length
         );
 
         const revenueByDay = last7Days.map((day) =>
           allOrders
-            .filter((o) => o.createdAt?.includes(day) && o.paymentStatus === "completed")
+            .filter(
+              (o) =>
+                o.createdAt?.includes(day) && o.paymentStatus === "completed"
+            )
             .reduce((sum, o) => sum + Number(o.totalAmount || 0), 0)
         );
 
@@ -125,7 +129,7 @@ function AdminDashboard() {
           orders: allOrders.length,
           revenue: totalRevenue,
           userGrowth,
-          revenueGrowth
+          revenueGrowth,
         });
 
         setChartData({
@@ -133,7 +137,10 @@ function AdminDashboard() {
           revenue: revenueByDay,
           statusDistribution: Object.values(statusCounts),
           labels: last7Days.map((d) =>
-            new Date(d).toLocaleDateString("en-US", { weekday: "short", day: "numeric" })
+            new Date(d).toLocaleDateString("en-US", {
+              weekday: "short",
+              day: "numeric",
+            })
           ),
         });
       } catch (err) {
@@ -158,10 +165,12 @@ function AdminDashboard() {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen text-center p-6">
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
-          <h3 className="text-lg font-medium text-red-800 mb-2">Error Loading Data</h3>
+          <h3 className="text-lg font-medium text-red-800 mb-2">
+            Error Loading Data
+          </h3>
           <p className="text-red-600 mb-4">{error}</p>
-          <button 
-            onClick={() => window.location.reload()} 
+          <button
+            onClick={() => window.location.reload()}
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
           >
             Retry
@@ -179,7 +188,7 @@ function AdminDashboard() {
         data: chartData.orders,
         backgroundColor: "rgba(99, 102, 241, 0.7)",
         borderRadius: 6,
-        borderWidth: 0
+        borderWidth: 0,
       },
     ],
   };
@@ -195,7 +204,7 @@ function AdminDashboard() {
         tension: 0.4,
         fill: true,
         pointBackgroundColor: "rgba(16, 185, 129, 1)",
-        borderWidth: 2
+        borderWidth: 2,
       },
     ],
   };
@@ -209,13 +218,13 @@ function AdminDashboard() {
           "rgba(245, 158, 11, 0.7)",
           "rgba(59, 130, 246, 0.7)",
           "rgba(16, 185, 129, 0.7)",
-          "rgba(239, 68, 68, 0.7)"
+          "rgba(239, 68, 68, 0.7)",
         ],
         borderColor: [
           "rgba(245, 158, 11, 1)",
           "rgba(59, 130, 246, 1)",
           "rgba(16, 185, 129, 1)",
-          "rgba(239, 68, 68, 1)"
+          "rgba(239, 68, 68, 1)",
         ],
         borderWidth: 1,
       },
@@ -224,35 +233,35 @@ function AdminDashboard() {
 
   const chartOptions = {
     responsive: true,
-    plugins: { 
-      legend: { 
+    plugins: {
+      legend: {
         position: "top",
         labels: {
           usePointStyle: true,
-          pointStyle: "circle"
-        }
-      }, 
-      tooltip: { 
-        mode: "index", 
+          pointStyle: "circle",
+        },
+      },
+      tooltip: {
+        mode: "index",
         intersect: false,
         backgroundColor: "rgba(0,0,0,0.8)",
         titleFont: { size: 14 },
         bodyFont: { size: 12 },
-        padding: 12
-      } 
+        padding: 12,
+      },
     },
-    scales: { 
-      y: { 
+    scales: {
+      y: {
         beginAtZero: true,
         grid: {
-          drawBorder: false
-        }
+          drawBorder: false,
+        },
       },
       x: {
         grid: {
-          display: false
-        }
-      }
+          display: false,
+        },
+      },
     },
     maintainAspectRatio: false,
   };
@@ -263,40 +272,94 @@ function AdminDashboard() {
     plugins: {
       ...chartOptions.plugins,
       legend: {
-        position: "right"
-      }
-    }
+        position: "right",
+      },
+    },
   };
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Dashboard Overview</h1>
+      {/* Header with title and logout button */}
+      <div className="flex justify-between items-start mb-8">
+        <h1 className="text-3xl font-bold text-gray-800">Dashboard Overview</h1>
+        <motion.button
+          initial={false}
+          whileHover={{
+            scale: 1.05,
+            backgroundColor: "#fef2f2",
+            borderColor: "#fca5a5",
+          }}
+          whileTap={{
+            scale: 0.95,
+            backgroundColor: "#fee2e2",
+          }}
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+          className="group flex items-center gap-2 bg-white text-gray-700 px-4 py-2 rounded-full transition-all duration-200 shadow-sm border border-red-200"
+        >
+          <motion.span
+            whileHover={{ rotate: 5 }} // slight icon wiggle
+          >
+            <FaSignOutAlt className="text-red-500 group-hover:text-red-600 transition-colors" />
+          </motion.span>
+          <span className="group-hover:text-red-600 transition-colors">
+            Logout
+          </span>
+        </motion.button>
+      </div>
 
       {/* Stats Cards */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <DashboardBtn
+            color="indigo"
+            label="Manage Users"
+            icon={<FaUsers className="text-xl" />}
+            onClick={() => navigate("/admin/users")}
+            className="hover:scale-[1.02] transition-transform duration-200"
+          />
+          <DashboardBtn
+            color="emerald"
+            label="Manage Products"
+            icon={<FaBoxOpen className="text-xl" />}
+            onClick={() => navigate("/admin/products")}
+            className="hover:scale-[1.02] transition-transform duration-200"
+          />
+          <DashboardBtn
+            color="blue"
+            label="Manage Orders"
+            icon={<FaClipboardList className="text-xl" />}
+            onClick={() => navigate("/admin/orders")}
+            className="hover:scale-[1.02] transition-transform duration-200"
+          />
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard 
-          icon={<FaUsers className="text-xl" />} 
-          label="Total Users" 
-          value={stats.users} 
+        <StatCard
+          icon={<FaUsers className="text-xl" />}
+          label="Total Users"
+          value={stats.users}
           growth={stats.userGrowth}
           color="indigo"
         />
-        <StatCard 
-          icon={<FaShoppingCart className="text-xl" />} 
-          label="Total Orders" 
-          value={stats.orders} 
+        <StatCard
+          icon={<FaShoppingCart className="text-xl" />}
+          label="Total Orders"
+          value={stats.orders}
           color="blue"
         />
-        <StatCard 
-          icon={<FaBoxOpen className="text-xl" />} 
-          label="Products" 
-          value={stats.products} 
+        <StatCard
+          icon={<FaBoxOpen className="text-xl" />}
+          label="Products"
+          value={stats.products}
           color="emerald"
         />
-        <StatCard 
-          icon={<FaRupeeSign className="text-xl" />} 
-          label="Total Revenue" 
-          value={`₹${stats.revenue.toLocaleString()}`} 
+        <StatCard
+          icon={<FaRupeeSign className="text-xl" />}
+          label="Total Revenue"
+          value={`$${stats.revenue.toLocaleString()}`}
           growth={stats.revenueGrowth}
           color="green"
         />
@@ -316,26 +379,6 @@ function AdminDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <DashboardBtn 
-          color="indigo" 
-          label="Manage Users" 
-          icon={<FaUsers />}
-          onClick={() => navigate("/admin/users")} 
-        />
-        <DashboardBtn 
-          color="emerald" 
-          label="Manage Products" 
-          icon={<FaBoxOpen />}
-          onClick={() => navigate("/admin/products")} 
-        />
-        <DashboardBtn 
-          color="blue" 
-          label="Manage Orders" 
-          icon={<FaClipboardList />}
-          onClick={() => navigate("/admin/orders")} 
-        />
-      </div>
     </div>
   );
 }
@@ -345,27 +388,27 @@ const StatCard = ({ icon, label, value, growth, color }) => {
     indigo: {
       bg: "bg-indigo-50",
       text: "text-indigo-600",
-      growth: "text-indigo-500"
+      growth: "text-indigo-500",
     },
     blue: {
       bg: "bg-blue-50",
       text: "text-blue-600",
-      growth: "text-blue-500"
+      growth: "text-blue-500",
     },
     emerald: {
       bg: "bg-emerald-50",
       text: "text-emerald-600",
-      growth: "text-emerald-500"
+      growth: "text-emerald-500",
     },
     green: {
       bg: "bg-green-50",
       text: "text-green-600",
-      growth: "text-green-500"
-    }
+      growth: "text-green-500",
+    },
   };
 
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ y: -5 }}
       className={`${colorClasses[color].bg} p-6 rounded-xl shadow-sm border border-gray-100`}
     >
@@ -376,11 +419,15 @@ const StatCard = ({ icon, label, value, growth, color }) => {
           {growth && (
             <div className="flex items-center mt-2">
               <FaArrowUp className={`${colorClasses[color].growth} mr-1`} />
-              <span className={`text-sm ${colorClasses[color].growth}`}>{growth}% from last week</span>
+              <span className={`text-sm ${colorClasses[color].growth}`}>
+                {growth}% from last week
+              </span>
             </div>
           )}
         </div>
-        <div className={`p-3 rounded-lg ${colorClasses[color].bg} ${colorClasses[color].text}`}>
+        <div
+          className={`p-3 rounded-lg ${colorClasses[color].bg} ${colorClasses[color].text}`}
+        >
           {icon}
         </div>
       </div>
@@ -399,7 +446,7 @@ const DashboardBtn = ({ color, label, icon, onClick }) => {
   const colorClasses = {
     indigo: "bg-indigo-600 hover:bg-indigo-700",
     blue: "bg-blue-600 hover:bg-blue-700",
-    emerald: "bg-emerald-600 hover:bg-emerald-700"
+    emerald: "bg-emerald-600 hover:bg-emerald-700",
   };
 
   return (

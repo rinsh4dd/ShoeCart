@@ -22,7 +22,7 @@ useEffect(() => {
         }
 
         // User is authenticated, fetch orders
-        const { data } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${currentUser.id}`);
+        const { data } = await axios.get(`http://localhost:3000/users/${currentUser.id}`);
         setOrders(data.orders || []); // Ensure empty array if no orders
       } catch (err) {
         console.error("Error fetching orders:", err);

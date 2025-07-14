@@ -21,7 +21,7 @@ function Wishlist() {
     const fetchWishlist = async () => {
       try {
         const { data } = await axios.get(
-          `https://shoecart-4ug1.onrender.com/users/${user.id}`
+          `http://localhost:3000/users/${user.id}`
         );
         setWishlist(data.wishlist || []);
       } catch (err) {
@@ -41,13 +41,13 @@ function Wishlist() {
       setWishlist(prev => prev.filter(item => item.id !== productId));
       
       const { data: currentUser } = await axios.get(
-        `https://shoecart-4ug1.onrender.com/users/${user.id}`
+        `http://localhost:3000/users/${user.id}`
       );
       const updatedWishlist =
         currentUser.wishlist?.filter((item) => item.id !== productId) || [];
 
       await axios.patch(
-        `https://shoecart-4ug1.onrender.com/users/${user.id}`,
+        `http://localhost:3000/users/${user.id}`,
         { wishlist: updatedWishlist }
       );
 

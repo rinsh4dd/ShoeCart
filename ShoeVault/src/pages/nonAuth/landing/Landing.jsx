@@ -73,6 +73,7 @@ function Landing() {
                 name={e?.name}
                 special_offer={e?.special_offer}
                 price={e?.price}
+                in_stock={e?.in_stock}
               />
             ))}
           </div>
@@ -105,6 +106,7 @@ function Landing() {
                 price={e?.price}
                 category={e?.category}
                 brand={e?.brand}
+                in_stock={e?.in_stock}
               />
             ))}
           </div>

@@ -147,6 +147,7 @@ function Products() {
                 price={p.price}
                 category={p.category}
                 brand={p.brand}
+                in_stock = {p.in_stock}
               />
             ))}
           </div>

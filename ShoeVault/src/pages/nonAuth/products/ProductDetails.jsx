@@ -20,7 +20,9 @@ function ProductDetails() {
     window.scrollTo(0, 0);
     async function fetchProduct() {
       try {
-        const response = await fetch(`https://shoecart-4ug1.onrender.com/products/${id}`);
+        const response = await fetch(
+          `http://localhost:3000/products/${id}`
+        );
         if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         setProduct(data);
@@ -39,7 +41,9 @@ function ProductDetails() {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user || !product || !size) return;
       try {
-        const res = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+        const res = await fetch(
+          `http://localhost:3000/users/${user.id}`
+        );
         const userData = await res.json();
         const exists = userData.cart?.some(
           (item) => item.id === product.id && item.size === size
@@ -56,9 +60,13 @@ function ProductDetails() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
     try {
-      const response = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+      const response = await fetch(
+        `http://localhost:3000/users/${user.id}`
+      );
       const userData = await response.json();
-      const inWishlist = userData.wishlist?.some((item) => item.id === productId);
+      const inWishlist = userData.wishlist?.some(
+        (item) => item.id === productId
+      );
       setIsInWishlist(inWishlist);
     } catch (err) {
       console.error("Error checking wishlist:", err);
@@ -84,7 +92,9 @@ function ProductDetails() {
       image_url: product.image_url,
     };
     try {
-      const userRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+      const userRes = await fetch(
+        `http://localhost:3000/users/${user.id}`
+      );
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
       const existingItemIndex = userData.cart?.findIndex(
@@ -101,11 +111,14 @@ function ProductDetails() {
         updatedCart = [...(userData.cart || []), cartItem];
         toast.success("Item added to cart!");
       }
-      const patchRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cart: updatedCart }),
-      });
+      const patchRes = await fetch(
+        `http://localhost:3000/users/${user.id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cart: updatedCart }),
+        }
+      );
       if (!patchRes.ok) throw new Error("Failed to update cart");
       setCartLength(updatedCart.length);
     } catch (err) {
@@ -121,7 +134,9 @@ function ProductDetails() {
       return;
     }
     try {
-      const userRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+      const userRes = await fetch(
+        `http://localhost:3000/users/${user.id}`
+      );
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
       const wishlistItem = {
@@ -131,10 +146,14 @@ function ProductDetails() {
         image_url: product.image_url,
         brand: product.brand,
       };
-      const alreadyInWishlist = userData.wishlist?.some((item) => item.id === product.id);
+      const alreadyInWishlist = userData.wishlist?.some(
+        (item) => item.id === product.id
+      );
       let updatedWishlist;
       if (alreadyInWishlist) {
-        updatedWishlist = userData.wishlist.filter((item) => item.id !== product.id);
+        updatedWishlist = userData.wishlist.filter(
+          (item) => item.id !== product.id
+        );
         setIsInWishlist(false);
         toast.success("Removed from wishlist!");
       } else {
@@ -142,11 +161,14 @@ function ProductDetails() {
         setIsInWishlist(true);
         toast.success("Added to wishlist!");
       }
-      const patchRes = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ wishlist: updatedWishlist }),
-      });
+      const patchRes = await fetch(
+        `http://localhost:3000/users/${user.id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ wishlist: updatedWishlist }),
+        }
+      );
       if (!patchRes.ok) throw new Error("Failed to update wishlist");
     } catch (err) {
       console.error("Error updating wishlist:", err);
@@ -155,20 +177,28 @@ function ProductDetails() {
   };
 
   const incrementQuantity = () => {
-    setQuantity(prev => prev + 1);
+    setQuantity((prev) => prev + 1);
   };
 
   const decrementQuantity = () => {
     if (quantity > 1) {
-      setQuantity(prev => prev - 1);
+      setQuantity((prev) => prev - 1);
     }
   };
 
   if (error) {
-    return <div className="flex items-center justify-center min-h-screen bg-gray-50 text-red-600 font-semibold animate-pulse">{error}</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 text-red-600 font-semibold animate-pulse">
+        {error}
+      </div>
+    );
   }
   if (!product) {
-    return <div className="flex items-center justify-center min-h-screen bg-gray-50 text-gray-500 animate-pulse">Loading product details...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 text-gray-500 animate-pulse">
+        Loading product details...
+      </div>
+    );
   }
 
   return (
@@ -187,8 +217,23 @@ function ProductDetails() {
 
           {/* Product Details */}
           <div className="space-y-4 sm:space-y-6">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{product.name}</h1>
-            <p className="text-xl sm:text-2xl font-semibold text-gray-800">${product.price}</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              {product.name}
+            </h1>
+            <p className="text-xl sm:text-2xl font-semibold text-gray-800">
+              ${product.price}
+            </p>
+            {typeof product.in_stock === "boolean" && (
+              <span
+                className={`inline-block px-3 py-[2px] text-xs font-medium rounded-full ${
+                  product.in_stock
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
+                {product.in_stock ? "In Stock" : "Out of Stock"}
+              </span>
+            )}
 
             {product.special_offer !== "None" && (
               <span className="inline-block bg-red-500 text-white text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-sm">
@@ -201,7 +246,8 @@ function ProductDetails() {
             </p>
 
             <div className="text-xs sm:text-sm text-gray-600">
-              <strong className="text-gray-800">Category:</strong> {product.category}
+              <strong className="text-gray-800">Category:</strong>{" "}
+              {product.category}
             </div>
             <div className="text-xs sm:text-sm text-gray-600">
               <strong className="text-gray-800">Brand:</strong> {product.brand}
@@ -209,7 +255,9 @@ function ProductDetails() {
 
             {/* Size Selection */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Available Sizes:</label>
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                Available Sizes:
+              </label>
               <div className="flex flex-wrap gap-2">
                 {product.available_sizes?.map((shoeSize) => (
                   <button
@@ -229,9 +277,11 @@ function ProductDetails() {
 
             {/* Quantity */}
             <div className="flex items-center space-x-4">
-              <label className="text-xs sm:text-sm font-medium text-gray-700">Quantity:</label>
+              <label className="text-xs sm:text-sm font-medium text-gray-700">
+                Quantity:
+              </label>
               <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
-                <button 
+                <button
                   onClick={decrementQuantity}
                   className="px-3 py-1 sm:px-3 sm:py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 transition"
                 >
@@ -240,7 +290,7 @@ function ProductDetails() {
                 <span className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-white">
                   {quantity}
                 </span>
-                <button 
+                <button
                   onClick={incrementQuantity}
                   className="px-3 py-1 sm:px-3 sm:py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 transition"
                 >
@@ -277,7 +327,11 @@ function ProductDetails() {
                     : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
                 }`}
               >
-                <CiHeart className={`text-base sm:text-lg ${isInWishlist ? "fill-current" : ""}`} />
+                <CiHeart
+                  className={`text-base sm:text-lg ${
+                    isInWishlist ? "fill-current" : ""
+                  }`}
+                />
                 {isInWishlist ? "In Wishlist" : "Wishlist"}
               </button>
             </div>

@@ -22,7 +22,7 @@ function Cart() {
       if (!loading && user?.id) {
         setIsLoading(true);
         try {
-          const response = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+          const response = await fetch(`http://localhost:3000/users/${user.id}`);
           if (!response.ok) throw new Error("Failed to fetch cart");
           const data = await response.json();
           setCart(data.cart || []);
@@ -41,7 +41,7 @@ function Cart() {
   const updateCartInDB = async (updatedCart) => {
     setIsUpdating(true);
     try {
-      const response = await fetch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
+      const response = await fetch(`http://localhost:3000/users/${user.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart: updatedCart })

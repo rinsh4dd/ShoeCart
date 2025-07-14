@@ -28,7 +28,7 @@ function PaymentPage() {
       return;
     }
 
-    axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`)
+    axios.get(`http://localhost:3000/users/${user.id}`)
       .then(({ data }) => {
         setCart(data.cart || []);
         // Pre-fill address if available
@@ -113,9 +113,9 @@ function PaymentPage() {
         createdAt: new Date().toISOString()
       };
 
-      const { data: currentUser } = await axios.get(`https://shoecart-4ug1.onrender.com/users/${user.id}`);
+      const { data: currentUser } = await axios.get(`http://localhost:3000/users/${user.id}`);
       
-      await axios.patch(`https://shoecart-4ug1.onrender.com/users/${user.id}`, {
+      await axios.patch(`http://localhost:3000/users/${user.id}`, {
         cart: [],
         orders: [...(currentUser.orders || []), newOrder],
         shippingAddress: billingAddress // Save address for future orders

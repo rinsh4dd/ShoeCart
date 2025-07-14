@@ -25,6 +25,8 @@ import AdminDashboard from "./admin/AdminDashboard";
 import ManageUsers from "./admin/ManageUsers";
 import ManageProducts from "./admin/ManageProducts";
 import ManageOrders from "./admin/ManageOrders";
+import AddProductPage from "./admin/AddProduct";
+import EditProductPage from "./admin/EditProduct";
 
 function AppRoutesWrapper() {
   const location = useLocation();
@@ -60,6 +62,8 @@ function AppRoutesWrapper() {
           <Route path="/admin/users" element={<ManageUsers />} />
           <Route path="/admin/products" element={<ManageProducts />} />
           <Route path="/admin/orders" element={<ManageOrders />} />
+          <Route path="/admin/products/addproduct" element={<AddProductPage/>}></Route>
+          <Route path="/admin/products/edit/:id" element={<EditProductPage/>}></Route>
         </Routes>
       </div>
     </div>

@@ -7,7 +7,7 @@ function LoginAsAdmin() {
   const navigate = useNavigate();
 
   const handleAdminLogin = async () => {
-    const res = await fetch("https://your-render-url.com/users");
+    const res = await fetch("http://localhost:3000/users");
     const users = await res.json();
     const admin = users.find(
       (u) => u.email === email && u.password === password && u.role === "admin"
