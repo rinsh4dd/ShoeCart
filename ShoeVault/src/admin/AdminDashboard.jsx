@@ -9,6 +9,7 @@ import {
   FaArrowUp,
   FaShoppingCart,
   FaSignOutAlt,
+  FaDollarSign,
 } from "react-icons/fa";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
 import {
@@ -357,7 +358,7 @@ function AdminDashboard() {
           color="emerald"
         />
         <StatCard
-          icon={<FaRupeeSign className="text-xl" />}
+          icon={<FaDollarSign className="text-xl" />}
           label="Total Revenue"
           value={`$${stats.revenue.toLocaleString()}`}
           growth={stats.revenueGrowth}

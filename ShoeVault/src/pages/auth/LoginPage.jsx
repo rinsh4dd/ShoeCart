@@ -14,9 +14,7 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
   const { login } = useContext(AuthContext); // ✅ Use login function from context
-
   const images = [
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/46f6a122-0450-4b19-8808-5604a2afe847/JORDAN+LUKA+4+PF.png",
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/52642011-bfc1-4af4-975b-02f6f2b15ec3/JORDAN+LUKA+4+PF.png",
@@ -44,7 +42,7 @@ function LoginPage() {
 
         if (loggedInUser.isBlocked) {
           toast.error("Your account is blocked. Contact admin.");
-          return; // 🔥 prevent login flow from continuing
+          return;
         }
 
         if (loggedInUser.role === "admin") {

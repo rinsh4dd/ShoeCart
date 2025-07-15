@@ -6,6 +6,7 @@ import {
   FaCheckCircle,
   FaTimesCircle,
   FaRupeeSign,
+  FaDollarSign,
 } from "react-icons/fa";
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
@@ -117,39 +118,35 @@ function ManageOrders() {
   );
 
   const handleStatusChange = async (userId, orderId, newStatus) => {
-    const updatePromise = axios
-      .get(`http://localhost:3000/users/${userId}`)
-      .then((res) => {
-        const user = res.data;
+    try {
+      const res = await axios.get(`http://localhost:3000/users/${userId}`);
+      const user = res.data;
 
-        const updatedOrders = user.orders.map((order) =>
-          order.id.toString() === orderId.toString()
-            ? { ...order, orderStatus: newStatus }
-            : order
-        );
+      const updatedOrders = user.orders.map((order) =>
+        order.id.toString() === orderId.toString()
+          ? {
+              ...order,
+              orderStatus: newStatus,
+              // Don't modify paymentStatus here
+            }
+          : order
+      );
 
-        return axios.patch(`http://localhost:3000/users/${userId}`, {
-          orders: updatedOrders,
-        });
-      })
-      .then(() => {
-        setOrders((prev) =>
-          prev.map((order) =>
-            order.userId === userId && order.orderId === orderId
-              ? { ...order, orderStatus: newStatus }
-              : order
-          )
-        );
+      await axios.patch(`http://localhost:3000/users/${userId}`, {
+        orders: updatedOrders,
       });
 
-    toast.promise(updatePromise, {
-      loading: "Updating order status...",
-      success: `Status updated to "${newStatus}"`,
-      error: "Failed to update status",
-    });
-
-    try {
-      await updatePromise;
+      setOrders((prev) =>
+        prev.map((order) =>
+          order.userId === userId && order.orderId === orderId
+            ? {
+                ...order,
+                orderStatus: newStatus,
+                // Keep original payment status
+              }
+            : order
+        )
+      );
     } catch (error) {
       console.error("Error updating status:", error);
     }
@@ -199,7 +196,7 @@ function ManageOrders() {
         borderWidth: 1,
       },
       {
-        label: "Revenue (₹)",
+        label: "Revenue ($)",
         data: sortedProducts.map((p) => p.revenue),
         backgroundColor: "rgba(16, 185, 129, 0.7)",
         borderColor: "rgba(16, 185, 129, 1)",
@@ -226,10 +223,8 @@ function ManageOrders() {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      <Toaster position="top-right" />
-
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-       Order Management
+        Order Management
       </h1>
 
       {/* Order Stats Cards */}
@@ -259,11 +254,11 @@ function ManageOrders() {
             <div>
               <p className="text-sm font-medium text-gray-500">Total Revenue</p>
               <p className="text-2xl font-bold mt-1">
-                ₹{orderStats.totalRevenue.toLocaleString()}
+                ${orderStats.totalRevenue.toLocaleString()}
               </p>
             </div>
             <div className="p-3 rounded-lg bg-green-50 text-green-600">
-              <FaRupeeSign className="text-xl" />
+              <FaDollarSign className="text-xl" />
             </div>
           </div>
         </motion.div>
@@ -400,7 +395,7 @@ function ManageOrders() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    ₹{order.totalAmount}
+                    ${order.totalAmount}.00
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span

@@ -5,183 +5,7 @@
       "name": "Admin",
       "email": "admin@shoecart.com",
       "password": "Admin123@",
-      "role": "admin",
-      "isBlocked": false
-    },
-    {
-      "id": "1b5a",
-      "name": "Mohammed Rinshad",
-      "email": "rinshadcontacts@gmail.com",
-      "password": "Rinshad123@!",
-      "role": "user",
-      "isBlock": false,
-      "cart": [],
-      "orders": [
-        {
-          "id": 1752489508214,
-          "items": [
-            {
-              "id": "12",
-              "name": "Nike React Infinity Run",
-              "price": 170,
-              "size": "10",
-              "quantity": 2,
-              "image_url": "https://s.alicdn.com/@sc04/kf/Hae6fd6ba77cb49f3be8c884928ca847fR.jpg"
-            }
-          ],
-          "totalAmount": 340,
-          "paymentStatus": "completed",
-          "orderStatus": "delivered",
-          "paymentMethod": "VISA ****5464",
-          "billingAddress": {
-            "street": "chirakkal House Kallingal klpy",
-            "city": "tirur",
-            "state": "kerala",
-            "zip": "676551",
-            "country": "India"
-          },
-          "createdAt": "2025-07-14T10:38:28.214Z",
-          "deliveryStatus": "delivered"
-        },
-        {
-          "id": 1752490146868,
-          "items": [
-            {
-              "id": "4",
-              "name": "Adidas Clasiic",
-              "price": 90,
-              "size": "8",
-              "quantity": 2,
-              "image_url": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/fcf43637c2694ae197a1ab1487a0e8a4_9366/Duramo_RC_Shoes_Green_IE7991_01_standard.jpg"
-            }
-          ],
-          "totalAmount": 180,
-          "paymentStatus": "completed",
-          "orderStatus": "delivered",
-          "paymentMethod": "VISA ****1212",
-          "billingAddress": {
-            "street": "chirakkal House Kallingal klpy",
-            "city": "tirur",
-            "state": "kerala",
-            "zip": "676551",
-            "country": "India"
-          },
-          "createdAt": "2025-07-12T10:49:06.868Z"
-        },
-        {
-          "id": 1752490660842,
-          "items": [
-            {
-              "id": "6",
-              "name": "Nike Air Force 1",
-              "price": 100,
-              "size": "7",
-              "quantity": 2,
-              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
-            }
-          ],
-          "totalAmount": 200,
-          "paymentStatus": "completed",
-          "orderStatus": "delivered",
-          "paymentMethod": "VISA ****7654",
-          "billingAddress": {
-            "street": "chirakkal House Kallingal klpy",
-            "city": "tirur",
-            "state": "kerala",
-            "zip": "676551",
-            "country": "India"
-          },
-          "createdAt": "2025-07-12T10:57:40.842Z"
-        },
-        {
-          "id": 1752493485923,
-          "items": [
-            {
-              "id": "18",
-              "name": "Nike React Miler",
-              "price": 130,
-              "size": "9",
-              "quantity": 1,
-              "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg"
-            }
-          ],
-          "totalAmount": 130,
-          "paymentStatus": "completed",
-          "orderStatus": "delivered",
-          "paymentMethod": "VISA ****4654",
-          "billingAddress": {
-            "street": "chirakkal House Kallingal klpy",
-            "city": "tirur",
-            "state": "kerala",
-            "zip": "676551",
-            "country": "India"
-          },
-          "createdAt": "2025-07-12T11:44:45.923Z"
-        },
-        {
-          "id": 1752494162150,
-          "items": [
-            {
-              "id": "3",
-              "name": "Nike X-3 Sh",
-              "price": 115,
-              "size": "10",
-              "quantity": 1,
-              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
-            }
-          ],
-          "totalAmount": 115,
-          "paymentStatus": "completed",
-          "orderStatus": "processing",
-          "paymentMethod": "VISA ****4543",
-          "billingAddress": {
-            "street": "chirakkal House Kallingal klpy",
-            "city": "tirur",
-            "state": "kerala",
-            "zip": "676551",
-            "country": "India"
-          },
-          "createdAt": "2025-07-14T11:56:02.150Z"
-        }
-      ],
-      "wishlist": [
-        {
-          "id": "4",
-          "name": "Adidas Clasiic",
-          "price": 90,
-          "image_url": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/fcf43637c2694ae197a1ab1487a0e8a4_9366/Duramo_RC_Shoes_Green_IE7991_01_standard.jpg",
-          "brand": "Reebok"
-        },
-        {
-          "id": "20",
-          "name": "Nike Joyride Run Flyknit",
-          "price": 180,
-          "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/99a7d3cb-e40c-4474-91c2-0f2e6d231fd2/joyride-run-flyknit-womens-running-shoe-HcfnJd.jpg",
-          "brand": "Nike"
-        },
-        {
-          "id": "21",
-          "name": "Nike Mercurial Vapor 13 Elite FG",
-          "price": 250,
-          "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg",
-          "brand": "Nike"
-        },
-        {
-          "id": "19",
-          "name": "Nike Air Zoom Pegasus 37",
-          "price": 120,
-          "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-33b0a0a5-c171-46cc-ad20-04a768703e47/air-zoom-pegasus-37-womens-running-shoe-Jl0bDf.jpg",
-          "brand": "Nike"
-        }
-      ],
-      "created_at": "2025-07-11T09:59:27.131Z",
-      "shippingAddress": {
-        "street": "chirakkal House Kallingal klpy",
-        "city": "tirur",
-        "state": "kerala",
-        "zip": "676551",
-        "country": "India"
-      }
+      "role": "admin"
     },
     {
       "id": "ee3a",
@@ -589,18 +413,6 @@
       "created_at": "2025-07-28T17:00:00.000Z"
     },
     {
-      "id": "u029",
-      "name": "Farhan",
-      "email": "farhan.t@gmail.com",
-      "password": "Farhan@909",
-      "role": "user",
-      "isBlock": false,
-      "cart": [],
-      "orders": [],
-      "wishlist": [],
-      "created_at": "2025-07-29T18:00:00.000Z"
-    },
-    {
       "id": "u030",
       "name": "Revathi",
       "email": "revathi.r@gmail.com",
@@ -611,6 +423,51 @@
       "orders": [],
       "wishlist": [],
       "created_at": "2025-07-30T19:00:00.000Z"
+    },
+    {
+      "id": "b0e6",
+      "name": "Mohammed Rinshad",
+      "email": "rinshadcontacts@gmail.com",
+      "password": "Rinshad123@!",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1752560820998,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "10",
+              "quantity": 8,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 920,
+          "paymentStatus": "completed",
+          "orderStatus": "shipped",
+          "paymentMethod": "Net Banking (State Bank of India)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T06:27:00.998Z"
+        }
+      ],
+      "wishlist": [],
+      "created_at": "2025-07-15T06:25:38.657Z",
+      "shippingAddress": {
+        "street": "Chirakkal House ,paravannur Cholakkunnu",
+        "city": "Tirur",
+        "state": "Kerala",
+        "zip": "676551",
+        "country": "India"
+      }
     }
   ],
   "products": [

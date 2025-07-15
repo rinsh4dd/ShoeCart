@@ -40,7 +40,7 @@ function AppRoutesWrapper() {
   return (
     <div className="w-full min-h-screen bg-white">
       {!shouldHideNavbar && <Navbar />}
-      <div className="w-full">
+      <div className="w-full  m-[10px]">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="*" element={<ErrorResponse />} />
@@ -57,7 +57,8 @@ function AppRoutesWrapper() {
           <Route path="/wishlist" element={<Wishlist />} />
 
           {/* Admin Routes */}
-          <Route path="/admin/login" element={<LoginAsAdmin />} />
+          
+          
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<ManageUsers />} />
           <Route path="/admin/products" element={<ManageProducts />} />
