@@ -39,11 +39,12 @@ useEffect(() => {
   const register = (userData) => setUser(userData);
   const logout = () => {
     setUser(null);
+  
     navigate("/");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading,setCartLength,cartLength }}>
+    <AuthContext.Provider value={{ user,setUser, login, register, logout, loading,setCartLength,cartLength }}>
       {!loading && children}
     </AuthContext.Provider>
   );

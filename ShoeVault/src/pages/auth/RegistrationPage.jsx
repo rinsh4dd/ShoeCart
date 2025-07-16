@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Silk from "../../common/ui/Silk";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AuthContext } from "../../common/context/AuthProvider";
 
 function RegistrationPage() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -26,7 +27,9 @@ function RegistrationPage() {
   const [success, setSuccess] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-
+  if (user) {
+    navigate("/");
+  }
   const backgroundImages = [
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/46f6a122-0450-4b19-8808-5604a2afe847/JORDAN+LUKA+4+PF.png",
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/52642011-bfc1-4af4-975b-02f6f2b15ec3/JORDAN+LUKA+4+PF.png",
@@ -238,7 +241,6 @@ function RegistrationPage() {
                 placeholder="••••••••"
               />
 
-              
               <div
                 className="absolute inset-y-0  flex items-center right-3 mb-2 cursor-pointer text-gray-600"
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -301,7 +303,8 @@ function RegistrationPage() {
 
           <div className="mt-6 text-center text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/login"
+            <Link
+              to="/login"
               className="text-blue-600 hover:text-blue-800 font-medium transition"
             >
               Sign in

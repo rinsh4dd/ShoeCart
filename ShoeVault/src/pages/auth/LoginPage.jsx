@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 import Silk from "../../common/ui/Silk";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { AuthContext } from "../../common/context/AuthProvider"; // ✅ Context import
+import { AuthContext } from "../../common/context/AuthProvider";
 
 function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -14,13 +14,15 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // ✅ Use login function from context
+  const { user,setUser, login } = useContext(AuthContext);
   const images = [
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/46f6a122-0450-4b19-8808-5604a2afe847/JORDAN+LUKA+4+PF.png",
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/52642011-bfc1-4af4-975b-02f6f2b15ec3/JORDAN+LUKA+4+PF.png",
     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/97299918-87e5-4dc4-b441-b048cb837215/JORDAN+LUKA+4+PF.png",
   ];
-
+  if(user){
+    navigate('/')
+  }
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
@@ -46,15 +48,15 @@ function LoginPage() {
         }
 
         if (loggedInUser.role === "admin") {
+          setUser(loggedInUser);
           toast.success("Welcome Admin!");
           setTimeout(
             () => navigate("/admin/dashboard", { replace: true }),
-            1000
           );
         } else {
           login(loggedInUser); // save to context + localStorage
           toast.success("Login successful! Redirecting...");
-          setTimeout(() => navigate("/", { replace: true }), 1000);
+          navigate("/", { replace: true });
         }
       } else {
         toast.error("Invalid email or password");

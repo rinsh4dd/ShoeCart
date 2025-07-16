@@ -20,9 +20,7 @@ function ProductDetails() {
     window.scrollTo(0, 0);
     async function fetchProduct() {
       try {
-        const response = await fetch(
-          `http://localhost:3000/products/${id}`
-        );
+        const response = await fetch(`http://localhost:3000/products/${id}`);
         if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         setProduct(data);
@@ -41,9 +39,7 @@ function ProductDetails() {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user || !product || !size) return;
       try {
-        const res = await fetch(
-          `http://localhost:3000/users/${user.id}`
-        );
+        const res = await fetch(`http://localhost:3000/users/${user.id}`);
         const userData = await res.json();
         const exists = userData.cart?.some(
           (item) => item.id === product.id && item.size === size
@@ -60,9 +56,7 @@ function ProductDetails() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
     try {
-      const response = await fetch(
-        `http://localhost:3000/users/${user.id}`
-      );
+      const response = await fetch(`http://localhost:3000/users/${user.id}`);
       const userData = await response.json();
       const inWishlist = userData.wishlist?.some(
         (item) => item.id === productId
@@ -92,9 +86,7 @@ function ProductDetails() {
       image_url: product.image_url,
     };
     try {
-      const userRes = await fetch(
-        `http://localhost:3000/users/${user.id}`
-      );
+      const userRes = await fetch(`http://localhost:3000/users/${user.id}`);
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
       const existingItemIndex = userData.cart?.findIndex(
@@ -111,14 +103,11 @@ function ProductDetails() {
         updatedCart = [...(userData.cart || []), cartItem];
         toast.success("Item added to cart!");
       }
-      const patchRes = await fetch(
-        `http://localhost:3000/users/${user.id}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cart: updatedCart }),
-        }
-      );
+      const patchRes = await fetch(`http://localhost:3000/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart: updatedCart }),
+      });
       if (!patchRes.ok) throw new Error("Failed to update cart");
       setCartLength(updatedCart.length);
     } catch (err) {
@@ -134,9 +123,7 @@ function ProductDetails() {
       return;
     }
     try {
-      const userRes = await fetch(
-        `http://localhost:3000/users/${user.id}`
-      );
+      const userRes = await fetch(`http://localhost:3000/users/${user.id}`);
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
       const wishlistItem = {
@@ -161,14 +148,11 @@ function ProductDetails() {
         setIsInWishlist(true);
         toast.success("Added to wishlist!");
       }
-      const patchRes = await fetch(
-        `http://localhost:3000/users/${user.id}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ wishlist: updatedWishlist }),
-        }
-      );
+      const patchRes = await fetch(`http://localhost:3000/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wishlist: updatedWishlist }),
+      });
       if (!patchRes.ok) throw new Error("Failed to update wishlist");
     } catch (err) {
       console.error("Error updating wishlist:", err);
@@ -176,15 +160,9 @@ function ProductDetails() {
     }
   };
 
-  const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1);
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-    }
-  };
+  const incrementQuantity = () => setQuantity((prev) => prev + 1);
+  const decrementQuantity = () =>
+    quantity > 1 && setQuantity((prev) => prev - 1);
 
   if (error) {
     return (
@@ -193,6 +171,7 @@ function ProductDetails() {
       </div>
     );
   }
+
   if (!product) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50 text-gray-500 animate-pulse">
@@ -235,7 +214,7 @@ function ProductDetails() {
               </span>
             )}
 
-            {product.special_offer !== "None" && (
+            {product.special_offer !== "None" && product.in_stock && (
               <span className="inline-block bg-red-500 text-white text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-sm">
                 {product.special_offer}
               </span>
@@ -254,6 +233,7 @@ function ProductDetails() {
             </div>
 
             {/* Size Selection */}
+            {/* Size Selection */}
             <div>
               <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                 Available Sizes:
@@ -263,11 +243,19 @@ function ProductDetails() {
                   <button
                     key={shoeSize}
                     onClick={() => setSize(shoeSize)}
-                    className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md border text-xs sm:text-sm font-medium transition ${
-                      size === shoeSize
-                        ? "bg-black text-white border-black"
-                        : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
-                    }`}
+                    disabled={!product.in_stock}
+                    className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md border text-xs sm:text-sm font-medium transition
+          ${
+            size === shoeSize
+              ? "bg-black text-white border-black"
+              : "bg-white text-gray-800 border-gray-300"
+          }
+          ${
+            !product.in_stock
+              ? "cursor-not-allowed opacity-50"
+              : "hover:bg-gray-100"
+          }
+        `}
                   >
                     {shoeSize}
                   </button>
@@ -275,7 +263,7 @@ function ProductDetails() {
               </div>
             </div>
 
-            {/* Quantity */}
+            {/* quantity */}
             <div className="flex items-center space-x-4">
               <label className="text-xs sm:text-sm font-medium text-gray-700">
                 Quantity:
@@ -283,7 +271,8 @@ function ProductDetails() {
               <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
                 <button
                   onClick={decrementQuantity}
-                  className="px-3 py-1 sm:px-3 sm:py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 transition"
+                  disabled={!product.in_stock}
+                  className="px-3 py-1 sm:px-3 sm:py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 transition disabled:opacity-50"
                 >
                   -
                 </button>
@@ -292,19 +281,25 @@ function ProductDetails() {
                 </span>
                 <button
                   onClick={incrementQuantity}
-                  className="px-3 py-1 sm:px-3 sm:py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 transition"
+                  disabled={!product.in_stock}
+                  className="px-3 py-1 sm:px-3 sm:py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 transition disabled:opacity-50"
                 >
                   +
                 </button>
               </div>
             </div>
 
-            {/* Buttons */}
+            {/* buttons */}
             <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
               {isSameSizeInCart ? (
                 <button
                   onClick={() => navigate("/cart")}
-                  className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-full text-xs sm:text-sm font-semibold transition-shadow shadow-md"
+                  disabled={!product.in_stock}
+                  className={`flex items-center gap-2 py-2 px-4 sm:py-3 sm:px-6 rounded-full text-xs sm:text-sm font-semibold transition-shadow shadow-md ${
+                    product.in_stock
+                      ? "bg-green-600 hover:bg-green-700 text-white"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
                 >
                   <CiShoppingCart className="text-base sm:text-lg" />
                   Go to Cart
@@ -312,7 +307,12 @@ function ProductDetails() {
               ) : (
                 <button
                   onClick={handleAddToCart}
-                  className="flex items-center gap-2 bg-black hover:bg-gray-800 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-full text-xs sm:text-sm font-semibold transition-shadow shadow-md"
+                  disabled={!product.in_stock}
+                  className={`flex items-center gap-2 py-2 px-4 sm:py-3 sm:px-6 rounded-full text-xs sm:text-sm font-semibold transition-shadow shadow-md ${
+                    product.in_stock
+                      ? "bg-black hover:bg-gray-800 text-white"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
                 >
                   <CiShoppingCart className="text-base sm:text-lg" />
                   Add to Cart

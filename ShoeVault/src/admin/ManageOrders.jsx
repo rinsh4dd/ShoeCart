@@ -180,7 +180,7 @@ function ManageOrders() {
     ],
   };
 
-  // Prepare data for best selling products
+
   const sortedProducts = [...productSalesData]
     .sort((a, b) => b.sales - a.sales)
     .slice(0, 5);

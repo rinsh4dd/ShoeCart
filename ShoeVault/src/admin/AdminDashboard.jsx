@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   FaUsers,
   FaBoxOpen,
   FaClipboardList,
-  FaRupeeSign,
   FaArrowUp,
   FaShoppingCart,
   FaSignOutAlt,
@@ -26,6 +25,7 @@ import {
   ArcElement,
 } from "chart.js";
 import { motion } from "framer-motion";
+import { AuthContext } from "../common/context/AuthProvider";
 
 // Register ChartJS components
 ChartJS.register(
@@ -53,6 +53,7 @@ function AdminDashboard() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { logout, user, authLoading } = useContext(AuthContext);
   const [chartData, setChartData] = useState({
     orders: [],
     revenue: [],
@@ -60,8 +61,17 @@ function AdminDashboard() {
     labels: [],
   });
 
+  // Redirect if not admin
+  useEffect(() => {
+    if (!authLoading && (!user || user?.role !== "admin")) {
+      navigate("/");
+    }
+  }, [user, authLoading, navigate]);
+
   useEffect(() => {
     const fetchData = async () => {
+      if (!user || user.role !== "admin") return;
+
       try {
         setLoading(true);
         const [userRes, productRes] = await Promise.all([
@@ -73,7 +83,6 @@ function AdminDashboard() {
         const products = productRes.data;
         let allOrders = [];
 
-        // Collect all orders and calculate status distribution
         const statusCounts = {
           pending: 0,
           shipped: 0,
@@ -91,8 +100,7 @@ function AdminDashboard() {
           }
         });
 
-        // Calculate growth percentages (mock data for demonstration)
-        const userGrowth = 12.5; // Would calculate from previous data in real app
+        const userGrowth = 12.5;
         const revenueGrowth = 8.3;
 
         const totalRevenue = allOrders.reduce(
@@ -103,7 +111,6 @@ function AdminDashboard() {
           0
         );
 
-        // Prepare last 7 days data
         const today = new Date();
         const last7Days = Array.from({ length: 7 }, (_, i) => {
           const d = new Date(today);
@@ -153,16 +160,17 @@ function AdminDashboard() {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
-  if (loading)
+  if (authLoading || loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="animate-spin h-12 w-12 border-4 border-blue-500 border-t-transparent rounded-full" />
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen text-center p-6">
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
@@ -179,8 +187,13 @@ function AdminDashboard() {
         </div>
       </div>
     );
+  }
 
-  // Chart data configurations
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   const barChartData = {
     labels: chartData.labels,
     datasets: [
@@ -254,14 +267,10 @@ function AdminDashboard() {
     scales: {
       y: {
         beginAtZero: true,
-        grid: {
-          drawBorder: false,
-        },
+        grid: { drawBorder: false },
       },
       x: {
-        grid: {
-          display: false,
-        },
+        grid: { display: false },
       },
     },
     maintainAspectRatio: false,
@@ -276,98 +285,86 @@ function AdminDashboard() {
         position: "right",
       },
     },
+    scales: {
+      x: { display: false, grid: { display: false } },
+      y: { display: false, grid: { display: false } },
+    },
   };
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      {/* Header with title and logout button */}
+      {/* Header */}
       <div className="flex justify-between items-start mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Dashboard Overview</h1>
         <motion.button
-          initial={false}
+          onClick={handleLogout}
+          className="group flex items-center gap-2 bg-white text-gray-700 px-4 py-2 rounded-full transition-all duration-200 shadow-sm border border-red-200"
           whileHover={{
             scale: 1.05,
             backgroundColor: "#fef2f2",
             borderColor: "#fca5a5",
           }}
-          whileTap={{
-            scale: 0.95,
-            backgroundColor: "#fee2e2",
-          }}
-          onClick={() => {
-            localStorage.removeItem("token");
-            navigate("/login");
-          }}
-          className="group flex items-center gap-2 bg-white text-gray-700 px-4 py-2 rounded-full transition-all duration-200 shadow-sm border border-red-200"
+          whileTap={{ scale: 0.95, backgroundColor: "#fee2e2" }}
         >
-          <motion.span
-            whileHover={{ rotate: 5 }} // slight icon wiggle
-          >
-            <FaSignOutAlt className="text-red-500 group-hover:text-red-600 transition-colors" />
-          </motion.span>
-          <span className="group-hover:text-red-600 transition-colors">
-            Logout
-          </span>
+          <FaSignOutAlt className="text-red-500 group-hover:text-red-600" />
+          <span className="group-hover:text-red-600">Logout</span>
         </motion.button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <DashboardBtn
-            color="indigo"
-            label="Manage Users"
-            icon={<FaUsers className="text-xl" />}
-            onClick={() => navigate("/admin/users")}
-            className="hover:scale-[1.02] transition-transform duration-200"
-          />
-          <DashboardBtn
-            color="emerald"
-            label="Manage Products"
-            icon={<FaBoxOpen className="text-xl" />}
-            onClick={() => navigate("/admin/products")}
-            className="hover:scale-[1.02] transition-transform duration-200"
-          />
-          <DashboardBtn
-            color="blue"
-            label="Manage Orders"
-            icon={<FaClipboardList className="text-xl" />}
-            onClick={() => navigate("/admin/orders")}
-            className="hover:scale-[1.02] transition-transform duration-200"
-          />
-        </div>
+      {/* Buttons */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <DashboardBtn
+          color="indigo"
+          label="Manage Users"
+          icon={<FaUsers className="text-xl" />}
+          onClick={() => navigate("/admin/users")}
+        />
+        <DashboardBtn
+          color="emerald"
+          label="Manage Products"
+          icon={<FaBoxOpen className="text-xl" />}
+          onClick={() => navigate("/admin/products")}
+        />
+        <DashboardBtn
+          color="blue"
+          label="Manage Orders"
+          icon={<FaClipboardList className="text-xl" />}
+          onClick={() => navigate("/admin/orders")}
+        />
       </div>
+
+      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatCard
-          icon={<FaUsers className="text-xl" />}
           label="Total Users"
           value={stats.users}
           growth={stats.userGrowth}
+          icon={<FaUsers />}
           color="indigo"
         />
         <StatCard
-          icon={<FaShoppingCart className="text-xl" />}
           label="Total Orders"
           value={stats.orders}
+          icon={<FaShoppingCart />}
           color="blue"
         />
         <StatCard
-          icon={<FaBoxOpen className="text-xl" />}
           label="Products"
           value={stats.products}
+          icon={<FaBoxOpen />}
           color="emerald"
         />
         <StatCard
-          icon={<FaDollarSign className="text-xl" />}
           label="Total Revenue"
           value={`$${stats.revenue.toLocaleString()}`}
           growth={stats.revenueGrowth}
+          icon={<FaDollarSign />}
           color="green"
         />
       </div>
 
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <ChartBox title="Order Trends (7 Days)">
           <Bar data={barChartData} options={chartOptions} />
         </ChartBox>
@@ -378,89 +375,65 @@ function AdminDashboard() {
           <Doughnut data={donutChartData} options={donutOptions} />
         </ChartBox>
       </div>
-
-      {/* Quick Actions */}
     </div>
   );
 }
 
+// Stat Card Component
 const StatCard = ({ icon, label, value, growth, color }) => {
-  const colorClasses = {
-    indigo: {
-      bg: "bg-indigo-50",
-      text: "text-indigo-600",
-      growth: "text-indigo-500",
-    },
-    blue: {
-      bg: "bg-blue-50",
-      text: "text-blue-600",
-      growth: "text-blue-500",
-    },
-    emerald: {
-      bg: "bg-emerald-50",
-      text: "text-emerald-600",
-      growth: "text-emerald-500",
-    },
-    green: {
-      bg: "bg-green-50",
-      text: "text-green-600",
-      growth: "text-green-500",
-    },
+  const colorMap = {
+    indigo: "text-indigo-600 bg-indigo-50",
+    blue: "text-blue-600 bg-blue-50",
+    emerald: "text-emerald-600 bg-emerald-50",
+    green: "text-green-600 bg-green-50",
   };
-
   return (
     <motion.div
-      whileHover={{ y: -5 }}
-      className={`${colorClasses[color].bg} p-6 rounded-xl shadow-sm border border-gray-100`}
+      whileHover={{ y: -4 }}
+      className={`rounded-xl p-6 border shadow-sm ${colorMap[color]}`}
     >
-      <div className="flex items-start justify-between">
+      <div className="flex justify-between items-start">
         <div>
-          <p className="text-sm font-medium text-gray-500 mb-1">{label}</p>
-          <p className="text-2xl font-bold text-gray-800">{value}</p>
+          <p className="text-sm text-gray-500">{label}</p>
+          <h2 className="text-2xl font-bold text-gray-800">{value}</h2>
           {growth && (
-            <div className="flex items-center mt-2">
-              <FaArrowUp className={`${colorClasses[color].growth} mr-1`} />
-              <span className={`text-sm ${colorClasses[color].growth}`}>
-                {growth}% from last week
-              </span>
-            </div>
+            <p className="text-sm mt-2 flex items-center text-green-500">
+              <FaArrowUp className="mr-1" /> {growth}% from last week
+            </p>
           )}
         </div>
-        <div
-          className={`p-3 rounded-lg ${colorClasses[color].bg} ${colorClasses[color].text}`}
-        >
-          {icon}
-        </div>
+        <div className={`p-3 rounded-lg ${colorMap[color]}`}>{icon}</div>
       </div>
     </motion.div>
   );
 };
 
-const ChartBox = ({ title, children }) => (
-  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-    <h3 className="text-lg font-semibold mb-4 text-gray-700">{title}</h3>
-    <div className="h-72">{children}</div>
-  </div>
-);
-
+// Dashboard Navigation Buttons
 const DashboardBtn = ({ color, label, icon, onClick }) => {
-  const colorClasses = {
+  const colorClass = {
     indigo: "bg-indigo-600 hover:bg-indigo-700",
     blue: "bg-blue-600 hover:bg-blue-700",
     emerald: "bg-emerald-600 hover:bg-emerald-700",
   };
-
   return (
     <motion.button
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className={`${colorClasses[color]} text-white py-3 px-6 rounded-lg transition shadow-md flex items-center justify-center gap-2`}
+      className={`${colorClass[color]} text-white py-3 px-6 rounded-lg flex items-center gap-2 justify-center shadow-md`}
     >
       {icon}
       <span>{label}</span>
     </motion.button>
   );
 };
+
+// Chart Container
+const ChartBox = ({ title, children }) => (
+  <div className="bg-white p-6 rounded-xl shadow-sm border">
+    <h3 className="text-lg font-semibold mb-4 text-gray-700">{title}</h3>
+    <div className="h-72">{children}</div>
+  </div>
+);
 
 export default AdminDashboard;

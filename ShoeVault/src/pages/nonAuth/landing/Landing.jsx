@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "../../../common/components/card/Card";
 import { GetAllProducts } from "../../../service/product";
 import Brand from "./Brand";
 import About from "./About";
 import Guarantee from "./MoreAbout";
 import ProductListCard from "../../../common/components/card/ProductListCard";
+import { AuthContext } from "../../../common/context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 function Landing() {
   const [item, setItem] = useState([]);
@@ -12,11 +14,20 @@ function Landing() {
   const [loading, setLoading] = useState(true);
   const [currentBanner, setCurrentBanner] = useState(0);
 
+  const navigate = useNavigate();
   const bannerImages = [
     "https://i.pinimg.com/1200x/17/55/1d/17551d7fb79e01ee35caf6fb6e92eb83.jpg",
     "https://i.pinimg.com/1200x/a0/0a/39/a00a3996dd716284d5cae1eacb0761f4.jpg",
     "https://i.pinimg.com/1200x/2a/b5/91/2ab5915b8d216b598c584f9a484bcee9.jpg",
   ];
+  const storedUser = localStorage.getItem("user");
+
+  if (storedUser) {
+    const parsedUser = JSON.parse(storedUser);
+    if (parsedUser.role === "admin") {
+      navigate("/admin/dashboard");
+    }
+  }
 
   useEffect(() => {
     async function fetchProducts() {
@@ -43,7 +54,7 @@ function Landing() {
 
   return (
     <div>
-      {/* 🔁 Banner Section */}
+     
       <div className="relative w-full mb-4 h-[300px] sm:h-[400px] md:h-[450px] overflow-hidden rounded-lg shadow">
         {bannerImages.map((src, index) => (
           <img
@@ -60,9 +71,13 @@ function Landing() {
       {/* 🔁 Product Grid with Loader */}
       <div className="min-h-[200px]">
         {loading ? (
-          <p className="text-center text-gray-600 py-8 text-lg">Loading products...</p>
+          <p className="text-center text-gray-600 py-8 text-lg">
+            Loading products...
+          </p>
         ) : item.length === 0 ? (
-          <p className="text-center text-red-500 py-8 text-lg">No products found or failed to load.</p>
+          <p className="text-center text-red-500 py-8 text-lg">
+            No products found or failed to load.
+          </p>
         ) : (
           <div className="grid gap-2.5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
             {item.map((e) => (
@@ -91,9 +106,13 @@ function Landing() {
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-600 py-6 text-lg">Loading more products...</p>
+          <p className="text-center text-gray-600 py-6 text-lg">
+            Loading more products...
+          </p>
         ) : item2.length === 0 ? (
-          <p className="text-center text-red-500 py-6 text-lg">No more products found.</p>
+          <p className="text-center text-red-500 py-6 text-lg">
+            No more products found.
+          </p>
         ) : (
           <div className="grid gap-2.5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
             {item2.map((e) => (

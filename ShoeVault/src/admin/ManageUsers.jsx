@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { showConfirmToast } from "../common/components/Toast/ToastMessage";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import {
   FaUser,
   FaEnvelope,
   FaUserShield,
   FaSearch,
-  FaEdit,
   FaTrash,
-  FaPlus,
   FaLock,
   FaUnlock,
+  FaEye,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function ManageUsers() {
   const [users, setUsers] = useState([]);
@@ -52,8 +52,7 @@ function ManageUsers() {
   const handleBlockUnblock = async (userId, isBlocked) => {
     const newStatus = !isBlocked;
     const action = isBlocked ? "unblock" : "block";
-    win;
-    if (dow.confirm(`Are you sure you want to ${action} this user?`)) {
+    if (window.confirm(`Are you sure you want to ${action} this user?`)) {
       try {
         setUpdatingStatusId(userId);
         await axios.patch(
@@ -80,6 +79,7 @@ function ManageUsers() {
       }
     }
   };
+
   const handleDelete = async (userId) => {
     showConfirmToast("Are you sure you want to delete this user?", async () => {
       try {
@@ -113,10 +113,7 @@ function ManageUsers() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <motion.div
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="h-12 w-12 border-4 border-red-600 border-t-transparent rounded-full"
-        />
+      
       </div>
     );
   }
@@ -168,7 +165,7 @@ function ManageUsers() {
               />
             </div>
 
-            <div className="relative w-48 group">
+            <div className="relative w-48">
               <select
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
@@ -178,23 +175,6 @@ function ManageUsers() {
                 <option value="admin">Administrator</option>
                 <option value="user">Standard User</option>
               </select>
-
-              {/* Down arrow icon */}
-              <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400 peer-focus:text-indigo-500">
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
             </div>
           </div>
         </div>
@@ -243,32 +223,22 @@ function ManageUsers() {
                       >
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            {user.role === "user" ? (
-                              <>
-                                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
-                                  {user?.name?.[0]?.toUpperCase() || "U"}
-                                </div>
-
-                                <div className="ml-4">
-                                  <div className="text-sm font-medium text-gray-900">
-                                    {user.name}
-                                  </div>
-                                  <div className="text-xs text-gray-500">
-                                    Joined{" "}
-                                    {new Date(
-                                      user.created_at
-                                    ).toLocaleDateString()}
-                                  </div>
-                                </div>
-                              </>
-                            ) : (
-                              <div className="text-sm font-semibold text-gray-800">
+                            <div className="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
+                              {user?.name?.[0]?.toUpperCase() || "U"}
+                            </div>
+                            <div className="ml-4">
+                              <div className="text-sm font-medium text-gray-900">
                                 {user.name}
                               </div>
-                            )}
+                              <div className="text-xs text-gray-500">
+                                Joined{" "}
+                                {new Date(
+                                  user.created_at
+                                ).toLocaleDateString()}
+                              </div>
+                            </div>
                           </div>
                         </td>
-
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                           {user.email}
                         </td>
@@ -296,10 +266,18 @@ function ManageUsers() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex justify-end gap-1">
-                            {/* ❌ Hide all actions for admin */}
                             {user.role === "user" && (
                               <>
-                                {/* 🟡 Block / Unblock */}
+                                {/* View Orders */}
+                                <Link
+                                  to={`/admin/user-orders/${user.id}`}
+                                  className="p-2 rounded-full text-blue-600 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200"
+                                  title="View Orders"
+                                >
+                                  <FaEye />
+                                </Link>
+
+                                {/* Block / Unblock */}
                                 <button
                                   className={`p-2 rounded-full transition-colors duration-200 ${
                                     user.isBlocked
@@ -315,9 +293,7 @@ function ManageUsers() {
                                   }
                                   disabled={updatingStatusId === user.id}
                                   aria-label={
-                                    user.isBlocked
-                                      ? "Unblock user"
-                                      : "Block user"
+                                    user.isBlocked ? "Unblock" : "Block"
                                   }
                                 >
                                   {updatingStatusId === user.id ? (
@@ -335,7 +311,7 @@ function ManageUsers() {
                                   )}
                                 </button>
 
-                                {/* 🗑️ Delete */}
+                                {/* Delete */}
                                 <button
                                   className={`text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-red-50 transition-colors duration-200 ${
                                     deletingId === user.id
@@ -361,23 +337,9 @@ function ManageUsers() {
                       </motion.tr>
                     ))
                   ) : (
-                    <motion.tr
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <td colSpan="4" className="px-6 py-12 text-center">
-                        <div className="text-gray-500 flex flex-col items-center">
-                          <img
-                            src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png"
-                            alt="No users"
-                            className="h-24 w-24 opacity-50 mb-4"
-                          />
-                          <p className="text-lg">No users found</p>
-                          <p className="text-sm">
-                            Try adjusting your search or filters
-                          </p>
-                        </div>
+                    <motion.tr>
+                      <td colSpan="4" className="text-center py-10">
+                        No users found.
                       </td>
                     </motion.tr>
                   )}
@@ -386,25 +348,6 @@ function ManageUsers() {
             </table>
           </div>
         </motion.div>
-
-        {filteredUsers.length > 0 && (
-          <div className="mt-4 flex justify-between items-center text-sm text-gray-600">
-            <div>
-              Showing {filteredUsers.length} of {users.length} users
-            </div>
-            <div className="flex gap-2">
-              <button className="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">
-                Previous
-              </button>
-              <button className="px-3 py-1 rounded border border-gray-300 bg-gray-100 font-medium">
-                1
-              </button>
-              <button className="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">
-                Next
-              </button>
-            </div>
-          </div>
-        )}
       </motion.div>
     </div>
   );
