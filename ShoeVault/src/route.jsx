@@ -1,35 +1,49 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
-  Route,
   Routes,
+  Route,
   useLocation,
 } from "react-router-dom";
+
+// Layout
 import Navbar from "./common/layout/navbar/Navbar";
-import Landing from "./pages/nonAuth/landing/Landing";
-import ErrorResponse from "./pages/nonAuth/404/ErrorResponse";
-import Products from "./pages/nonAuth/products/Products";
-import ProductDetails from "./pages/nonAuth/products/ProductDetails";
-import Cart from "./pages/nonAuth/cart/Cart";
-import PaymentPage from "./pages/nonAuth/payment/PaymentPage";
-import RegistrationPage from "./pages/auth/RegistrationPage";
-import LoginPage from "./pages/auth/LoginPage";
+import Footer from "./common/layout/footer/Footer";
+
+// Auth Context
 import AuthProvider from "./common/context/AuthProvider";
-import AboutUs from "./pages/nonAuth/aboutus/AboutUs";
-import OrderConfirmation from "./pages/nonAuth/order/OrderConfirmation";
-import OrdersPage from "./pages/nonAuth/order/OrdersPage";
-import OrderDetails from "./pages/nonAuth/order/OrderDetails";
-import Wishlist from "./pages/nonAuth/wishlist/WishList";
-import AdminDashboard from "./admin/AdminDashboard";
-import ManageUsers from "./admin/ManageUsers";
-import ManageProducts from "./admin/ManageProducts";
-import ManageOrders from "./admin/ManageOrders";
-import AddProductPage from "./admin/AddProduct";
-import EditProductPage from "./admin/EditProduct";
-import UserOrders from "./admin/UserOrders";
+
+// Route Protection
 import AdminPrivateRoute from "./common/Routes/AdminRoute";
 import PrivateRoute from "./common/Routes/privateRoute";
-import Footer from "./common/layout/footer/Footer";
+
+// Lazy-loaded Pages
+const Landing = lazy(() => import("./pages/nonAuth/landing/Landing"));
+const ErrorResponse = lazy(() => import("./pages/nonAuth/404/ErrorResponse"));
+const Products = lazy(() => import("./pages/nonAuth/products/Products"));
+const ProductDetails = lazy(() =>
+  import("./pages/nonAuth/products/ProductDetails")
+);
+const Cart = lazy(() => import("./pages/nonAuth/cart/Cart"));
+const PaymentPage = lazy(() => import("./pages/nonAuth/payment/PaymentPage"));
+const RegistrationPage = lazy(() => import("./pages/auth/RegistrationPage"));
+const LoginPage = lazy(() => import("./pages/auth/LoginPage"));
+const AboutUs = lazy(() => import("./pages/nonAuth/aboutus/AboutUs"));
+const OrderConfirmation = lazy(() =>
+  import("./pages/nonAuth/order/OrderConfirmation")
+);
+const OrdersPage = lazy(() => import("./pages/nonAuth/order/OrdersPage"));
+const OrderDetails = lazy(() => import("./pages/nonAuth/order/OrderDetails"));
+const Wishlist = lazy(() => import("./pages/nonAuth/wishlist/WishList"));
+
+// Admin Pages
+const AdminDashboard = lazy(() => import("./admin/AdminDashboard"));
+const ManageUsers = lazy(() => import("./admin/ManageUsers"));
+const ManageProducts = lazy(() => import("./admin/ManageProducts"));
+const ManageOrders = lazy(() => import("./admin/ManageOrders"));
+const AddProductPage = lazy(() => import("./admin/AddProduct"));
+const EditProductPage = lazy(() => import("./admin/EditProduct"));
+const UserOrders = lazy(() => import("./admin/UserOrders"));
 
 function AppRoutesWrapper() {
   const location = useLocation();
@@ -44,38 +58,52 @@ function AppRoutesWrapper() {
       {!shouldHideNavbar && <Navbar />}
 
       <div className="flex-grow">
-        <Routes>
-          {/* All your <Route /> definitions */}
-          <Route path="/" element={<Landing />} />
-          <Route path="*" element={<ErrorResponse />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<RegistrationPage />} />
-          <Route path="/about" element={<AboutUs />} />
+        <Suspense
+          fallback={<div className="text-center p-10">🔄 Loading...</div>}
+        >
+          <Routes>
+            {/* Public */}
+            <Route path="/" element={<Landing />} />
+            <Route path="*" element={<ErrorResponse />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<RegistrationPage />} />
+            <Route path="/about" element={<AboutUs />} />
 
-          <Route element={<PrivateRoute />}>
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/payment" element={<PaymentPage />} />
-            <Route path="/order-confirmation" element={<OrderConfirmation />} />
-            <Route path="/orders" element={<OrdersPage />} />
-            <Route path="/orders/:orderId" element={<OrderDetails />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-          </Route>
+            {/* User-Protected */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/products" element={<Products />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/payment" element={<PaymentPage />} />
+              <Route
+                path="/order-confirmation"
+                element={<OrderConfirmation />}
+              />
+              <Route path="/orders" element={<OrdersPage />} />
+              <Route path="/orders/:orderId" element={<OrderDetails />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+            </Route>
 
-          <Route element={<AdminPrivateRoute />}>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/users" element={<ManageUsers />} />
-            <Route path="/admin/products" element={<ManageProducts />} />
-            <Route path="/admin/orders" element={<ManageOrders />} />
-            <Route path="/admin/products/addproduct" element={<AddProductPage />} />
-            <Route path="/admin/products/edit/:id" element={<EditProductPage />} />
-            <Route path="/admin/user-orders/:id" element={<UserOrders />} />
-          </Route>
-        </Routes>
+            {/* Admin-Protected */}
+            <Route element={<AdminPrivateRoute />}>
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/users" element={<ManageUsers />} />
+              <Route path="/admin/products" element={<ManageProducts />} />
+              <Route path="/admin/orders" element={<ManageOrders />} />
+              <Route
+                path="/admin/products/addproduct"
+                element={<AddProductPage />}
+              />
+              <Route
+                path="/admin/products/edit/:id"
+                element={<EditProductPage />}
+              />
+              <Route path="/admin/user-orders/:id" element={<UserOrders />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </div>
 
-      {/* ✅ Now Footer will show below all pages except admin/login/signup */}
       {!shouldHideNavbar && <Footer />}
     </div>
   );
@@ -90,4 +118,5 @@ function UserRouter() {
     </Router>
   );
 }
+
 export default UserRouter;

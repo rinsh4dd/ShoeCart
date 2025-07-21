@@ -428,7 +428,7 @@ const DashboardBtn = ({ color, label, icon, onClick }) => {
   );
 };
 
-// Chart Container
+// Chart Container 
 const ChartBox = ({ title, children }) => (
   <div className="bg-white p-6 rounded-xl shadow-sm border">
     <h3 className="text-lg font-semibold mb-4 text-gray-700">{title}</h3>

@@ -50,7 +50,8 @@
         "state": "kerala",
         "zip": "676551",
         "country": "India"
-      }
+      },
+      "isBlocked": false
     },
     {
       "id": "fee4",
@@ -62,7 +63,8 @@
       "cart": [],
       "orders": [],
       "wishlist": [],
-      "created_at": "2025-06-14T11:46:10.481Z"
+      "created_at": "2025-06-14T11:46:10.481Z",
+      "isBlocked": false
     },
     {
       "id": "5e70",
@@ -457,10 +459,489 @@
             "country": "India"
           },
           "createdAt": "2025-07-15T06:27:00.998Z"
+        },
+        {
+          "id": 1752569645697,
+          "items": [
+            {
+              "id": "6",
+              "name": "Nike Air Force 1",
+              "price": 100,
+              "size": "7",
+              "quantity": 1,
+              "image_url": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014.jpg"
+            }
+          ],
+          "totalAmount": 100,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "Net Banking (State Bank of India)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T08:54:05.697Z"
+        },
+        {
+          "id": 1752572443320,
+          "items": [
+            {
+              "id": "16",
+              "name": "New Adidas 574",
+              "price": 130,
+              "size": "4",
+              "quantity": 1,
+              "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c8aba848adba4eeebf89ae2e00ba47dd_9366/Grand_Court_2.0_Shoes_Kids_White_GW6521_01_standard.jpg"
+            }
+          ],
+          "totalAmount": 130,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "Net Banking (HDFC Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T09:40:43.320Z"
+        },
+        {
+          "id": 1752579241782,
+          "items": [
+            {
+              "id": "8",
+              "name": "Puma Clyde",
+              "price": 95,
+              "size": "7",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/0029ebe4-0ea3-4d8b-9e0d-b13ffa466165/NIKE+SB+ZOOM+BLAZER+MID.png"
+            }
+          ],
+          "totalAmount": 95,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "UPI (CSDFC@)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T11:34:01.782Z"
+        },
+        {
+          "id": 1752638702318,
+          "items": [
+            {
+              "id": "20",
+              "name": "Nike Joyride Run Flyknit",
+              "price": 180,
+              "size": "6",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/99a7d3cb-e40c-4474-91c2-0f2e6d231fd2/joyride-run-flyknit-womens-running-shoe-HcfnJd.jpg"
+            }
+          ],
+          "totalAmount": 180,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "Net Banking (HDFC Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-16T04:05:02.318Z"
+        },
+        {
+          "id": 1752639181190,
+          "items": [
+            {
+              "id": "2",
+              "name": "New Balance",
+              "price": 150,
+              "size": "7",
+              "quantity": 1,
+              "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
+            }
+          ],
+          "totalAmount": 150,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "UPI (qq2@)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-16T04:13:01.190Z"
+        },
+        {
+          "id": 1752639414278,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "9",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 115,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "UPI (##@)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-16T04:16:54.278Z"
+        },
+        {
+          "id": 1752913000034,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "10",
+              "quantity": 258,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 29670,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "Net Banking (HDFC Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-19T08:16:40.034Z"
+        },
+        {
+          "id": 1752928852578,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "10",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            },
+            {
+              "id": "20",
+              "name": "Nike Joyride Run Flyknit",
+              "price": 180,
+              "size": "6",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/99a7d3cb-e40c-4474-91c2-0f2e6d231fd2/joyride-run-flyknit-womens-running-shoe-HcfnJd.jpg"
+            }
+          ],
+          "totalAmount": 295,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "Net Banking (State Bank of India)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-19T12:40:52.580Z"
         }
       ],
       "wishlist": [],
       "created_at": "2025-07-15T06:25:38.657Z",
+      "shippingAddress": {
+        "street": "Chirakkal House ,paravannur Cholakkunnu",
+        "city": "Tirur",
+        "state": "Kerala",
+        "zip": "676551",
+        "country": "India"
+      }
+    },
+    {
+      "id": "3aca",
+      "name": "KUNJIPPA",
+      "email": "k@gmail.com",
+      "password": "K123456@",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1752577966307,
+          "items": [
+            {
+              "id": "2",
+              "name": "New Balance",
+              "price": 150,
+              "size": "8",
+              "quantity": 1,
+              "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
+            }
+          ],
+          "totalAmount": 150,
+          "paymentStatus": "completed",
+          "orderStatus": "shipped",
+          "paymentMethod": "Net Banking (State Bank of India)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T11:12:46.307Z"
+        }
+      ],
+      "wishlist": [],
+      "created_at": "2025-07-15T11:10:42.558Z",
+      "shippingAddress": {
+        "street": "Chirakkal House ,paravannur Cholakkunnu",
+        "city": "Tirur",
+        "state": "Kerala",
+        "zip": "676551",
+        "country": "India"
+      }
+    },
+    {
+      "id": "ffd1",
+      "name": "fahismt",
+      "email": "fahismt@gmail.com",
+      "password": "@1234Abcd",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1752578855795,
+          "items": [
+            {
+              "id": "1",
+              "name": "Puma",
+              "price": 180,
+              "size": "9",
+              "quantity": 1,
+              "image_url": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/396464/07/sv01/fnd/AUS/fmt/png/Palermo-Lth-Unisex-Sneakers"
+            }
+          ],
+          "totalAmount": 180,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "Net Banking (HDFC Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T11:27:35.795Z"
+        },
+        {
+          "id": 1752579012570,
+          "items": [
+            {
+              "id": "1",
+              "name": "Puma",
+              "price": 180,
+              "size": "9",
+              "quantity": 1,
+              "image_url": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/396464/07/sv01/fnd/AUS/fmt/png/Palermo-Lth-Unisex-Sneakers"
+            }
+          ],
+          "totalAmount": 180,
+          "paymentStatus": "completed",
+          "orderStatus": "pending",
+          "paymentMethod": "Net Banking (ICICI Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T11:30:12.570Z"
+        },
+        {
+          "id": 1752579596469,
+          "items": [
+            {
+              "id": "9",
+              "name": "Reebok Zig Kinetica",
+              "price": 120,
+              "size": "7",
+              "quantity": 1,
+              "image_url": "https://nb.scene7.com/is/image/NB/u9060eca_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880"
+            }
+          ],
+          "totalAmount": 120,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "Net Banking (ICICI Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T11:39:56.469Z"
+        },
+        {
+          "id": 1752579650688,
+          "items": [
+            {
+              "id": "2",
+              "name": "New Balance",
+              "price": 150,
+              "size": "9",
+              "quantity": 3,
+              "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg"
+            }
+          ],
+          "totalAmount": 450,
+          "paymentStatus": "completed",
+          "orderStatus": "delivered",
+          "paymentMethod": "EMI (3 months EMI (No Cost))",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-15T11:40:50.688Z"
+        }
+      ],
+      "wishlist": [],
+      "created_at": "2025-07-15T11:25:36.522Z",
+      "shippingAddress": {
+        "street": "Chirakkal House ,paravannur Cholakkunnu",
+        "city": "Tirur",
+        "state": "Kerala",
+        "zip": "676551",
+        "country": "India"
+      }
+    },
+    {
+      "id": "65d7",
+      "name": "rashi",
+      "email": "rashi@gmail.com",
+      "password": "R123456789@",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1752584550144,
+          "items": [
+            {
+              "id": "9",
+              "name": "Reebok Zig Kinetica",
+              "price": 120,
+              "size": "6",
+              "quantity": 6,
+              "image_url": "https://nb.scene7.com/is/image/NB/u9060eca_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880"
+            }
+          ],
+          "totalAmount": 720,
+          "paymentStatus": "completed",
+          "orderStatus": "cancelled",
+          "paymentMethod": "EMI (12 months EMI (10% interest))",
+          "billingAddress": {
+            "street": "tr",
+            "city": "nj",
+            "state": "lm",
+            "zip": "25653256",
+            "country": "United Kingdom"
+          },
+          "createdAt": "2025-07-15T13:02:30.144Z"
+        }
+      ],
+      "wishlist": [
+        {
+          "id": "9",
+          "name": "Reebok Zig Kinetica",
+          "price": 120,
+          "image_url": "https://nb.scene7.com/is/image/NB/u9060eca_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880",
+          "brand": "Reebok"
+        }
+      ],
+      "created_at": "2025-07-15T12:57:47.411Z",
+      "shippingAddress": {
+        "street": "tr",
+        "city": "nj",
+        "state": "lm",
+        "zip": "25653256",
+        "country": "United Kingdom"
+      }
+    },
+    {
+      "id": "9009",
+      "name": "Rinshad",
+      "email": "rinshad123@gmail.com",
+      "password": "Rinshad123@!",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "orders": [
+        {
+          "id": 1752647483281,
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "9",
+              "quantity": 2,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            },
+            {
+              "id": "3",
+              "name": "Nike X-3 Sh",
+              "price": 115,
+              "size": "10",
+              "quantity": 1,
+              "image_url": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/3ffcfac2-025a-4107-ac04-5fb938d3a5f6/KILLSHOT+2+LEATHER.png"
+            }
+          ],
+          "totalAmount": 345,
+          "paymentStatus": "completed",
+          "orderStatus": "processing",
+          "paymentMethod": "Net Banking (HDFC Bank)",
+          "billingAddress": {
+            "street": "Chirakkal House ,paravannur Cholakkunnu",
+            "city": "Tirur",
+            "state": "Kerala",
+            "zip": "676551",
+            "country": "India"
+          },
+          "createdAt": "2025-07-16T06:31:23.281Z"
+        }
+      ],
+      "wishlist": [],
+      "created_at": "2025-07-16T06:30:04.523Z",
       "shippingAddress": {
         "street": "Chirakkal House ,paravannur Cholakkunnu",
         "city": "Tirur",
@@ -476,12 +957,13 @@
       "name": "Puma",
       "description": "Comfortable and stylish running shoes with superior cushioning.",
       "price": 180,
-      "category": "Men",
+      "category": "Men's",
       "available_sizes": [
         "8",
         "9",
         "10",
-        "11"
+        "11",
+        "7"
       ],
       "brand": "Puma",
       "image_url": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/396464/07/sv01/fnd/AUS/fmt/png/Palermo-Lth-Unisex-Sneakers",
@@ -505,7 +987,7 @@
       ],
       "brand": "New-balance",
       "image_url": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dw769f9d4b/images/page-designer/2024/July/16130_Comp_X_Womens_Shoes.jpg",
-      "in_stock": true,
+      "in_stock": false,
       "special_offer": "Buy one get one 50% off",
       "discount": 50,
       "warranty": "1 year",
